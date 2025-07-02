@@ -1,0 +1,11 @@
+{
+  "name": "parazita-template",
+  "version": "1.0.0",
+  "description": "Parazita Kusok website",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+} 
