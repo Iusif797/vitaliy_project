@@ -39,8 +39,8 @@
         <a href="./profile.html" class="ml-1">
           <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path></svg>
         </a>
-        <button class="ml-1" id="menu-toggle">
-          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        <button class="ml-1 p-2 rounded focus:outline-none" id="menu-toggle" aria-label="Меню">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
         </button>
       </div>
     </div>
@@ -79,7 +79,12 @@
   </div>
   
   <!-- Mobile menu -->
-  <nav class="md:hidden hidden bg-[#232b36] px-4 py-3 border-t border-[#2e3742]" id="mobile-menu">
+  <nav class="fixed top-0 right-0 w-3/4 max-w-xs h-full bg-[#232b36] px-4 py-5 md:hidden border-l border-[#2e3742] transform translate-x-full transition-transform duration-300 ease-in-out z-50" id="mobile-menu">
+    <div class="flex justify-end mb-4">
+      <button id="menu-close" class="p-2" aria-label="Закрыть">
+        <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
     <div class="grid grid-cols-2 gap-2">
       <a href="#" class="bg-[#1a212b] rounded px-3 py-2 text-center text-sm">Стикербуки</a>
       <a href="#" class="bg-[#1a212b] rounded px-3 py-2 text-center text-sm">Стикерпаки</a>
@@ -112,6 +117,9 @@
     </div>
   </nav>
   
+  <!-- Backdrop -->
+  <div id="menu-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+  
   <style>
     .hide-scrollbar::-webkit-scrollbar {
       display: none;
@@ -120,12 +128,40 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    /* prevent content scroll when menu open */
+    .overflow-hidden{overflow:hidden;}
   </style>
   
   <script>
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('menu-backdrop');
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+
+    const openMenu = () => {
+      mobileMenu.classList.remove('translate-x-full');
+      mobileMenu.classList.add('translate-x-0');
+      backdrop.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.remove('translate-x-0');
+      mobileMenu.classList.add('translate-x-full');
+      backdrop.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    };
+
+    menuToggle.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('translate-x-full')) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
     });
+
+    menuClose.addEventListener('click', closeMenu);
+    backdrop.addEventListener('click', closeMenu);
     
     document.getElementById('search-toggle')?.addEventListener('click', () => {
       document.getElementById('mobile-search').classList.toggle('hidden');
