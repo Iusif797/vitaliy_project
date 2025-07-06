@@ -38,7 +38,7 @@ async function includeHTML() {
 }
 
 // Запускаем после полной загрузки страницы
-document.addEventListener('DOMContentLoaded', includeHTML);
+document.addEventListener('DOMContentLoaded', includeHTML); 
 
 /**
  * Настройка функциональности для мобильных устройств
@@ -143,6 +143,19 @@ function setupMobileFeatures() {
     }
   };
   
+  // Находим все кнопки, содержащие SVG корзины
+  document.querySelectorAll('button').forEach(btn => {
+    const img = btn.querySelector('img[src$="button_add.svg"]');
+    if (img) {
+      btn.classList.add('cart-btn');
+      btn.addEventListener('click', () => {
+        btn.classList.add('scale-95');
+        setTimeout(() => btn.classList.remove('scale-95'), 150);
+        console.log('Добавление в корзину (заглушка)');
+      });
+    }
+  });
+  
   // Инициализация всех мобильных функций
   handleMobileCardLayout();
   setupSmoothScrolling();
@@ -153,4 +166,20 @@ function setupMobileFeatures() {
   window.addEventListener('resize', () => {
     handleMobileCardLayout();
   });
+
+  // Promo slider arrows
+  const promoImg = document.getElementById('promo-image');
+  if (promoImg) {
+    const slides = [
+      './assets/banner2.png',
+      './assets/bannerS.png'
+    ];
+    let idx = 0;
+    const showSlide = (i) => {
+      idx = (i + slides.length) % slides.length;
+      promoImg.src = slides[idx];
+    };
+    document.querySelectorAll('.promo-prev').forEach(btn => btn.addEventListener('click', () => showSlide(idx - 1)));
+    document.querySelectorAll('.promo-next').forEach(btn => btn.addEventListener('click', () => showSlide(idx + 1)));
+  }
 } 
