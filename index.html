@@ -575,8 +575,13 @@
             <p class="text-xs text-gray-700">Отряд самоубийц в полном сборе</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="cart-btn">
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-6 h-6">
+              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
+                data-id="1" 
+                data-name="Эмоциональные белки - Животные" 
+                data-price="300" 
+                data-img="./assets/card_image.png"
+                data-category="Стикерпак">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
               </button>
             </div>
           </div>
@@ -617,8 +622,13 @@
             <p class="text-xs text-gray-700">Наклейки Homestuck</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="cart-btn">
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-6 h-6">
+              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
+                data-id="1" 
+                data-name="Эмоциональные белки - Животные" 
+                data-price="300" 
+                data-img="./assets/card_image.png"
+                data-category="Стикерпак">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
               </button>
             </div>
           </div>
@@ -638,8 +648,13 @@
             <p class="text-xs text-gray-700">Наклейки Homestuck</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="cart-btn">
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-6 h-6">
+              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
+                data-id="1" 
+                data-name="Эмоциональные белки - Животные" 
+                data-price="300" 
+                data-img="./assets/card_image.png"
+                data-category="Стикерпак">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
               </button>
             </div>
           </div>
@@ -659,8 +674,13 @@
             <p class="text-xs text-gray-700">Наклейки Хоумстак детки</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="cart-btn">
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-6 h-6">
+              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
+                data-id="1" 
+                data-name="Эмоциональные белки - Животные" 
+                data-price="300" 
+                data-img="./assets/card_image.png"
+                data-category="Стикерпак">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
               </button>
             </div>
           </div>
@@ -699,5 +719,90 @@
 
     <!-- Footer -->
     <div data-include="./components/footer.html"></div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Existing code...
+        
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        
+        addToCartButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const price = this.dataset.price;
+            const img = this.dataset.img;
+            const category = this.dataset.category;
+            
+            // Get cart from localStorage or initialize empty array
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+              existingItem.quantity += 1;
+            } else {
+              cart.push({
+                id,
+                name,
+                price,
+                img,
+                category,
+                quantity: 1
+              });
+            }
+            
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count in header
+            updateCartCount();
+            
+            // Show notification
+            showNotification(`${name} добавлен в корзину`);
+          });
+        });
+        
+        // Update cart count function
+        function updateCartCount() {
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+          
+          const cartCountElements = document.querySelectorAll('.cart-count');
+          cartCountElements.forEach(element => {
+            element.textContent = cartCount;
+            element.classList.toggle('hidden', cartCount === 0);
+          });
+        }
+        
+        // Show notification function
+        function showNotification(message) {
+          // Create notification element
+          const notification = document.createElement('div');
+          notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300';
+          notification.textContent = message;
+          
+          document.body.appendChild(notification);
+          
+          // Show notification
+          setTimeout(() => {
+            notification.classList.remove('translate-y-10', 'opacity-0');
+          }, 100);
+          
+          // Hide and remove notification
+          setTimeout(() => {
+            notification.classList.add('translate-y-10', 'opacity-0');
+            setTimeout(() => {
+              document.body.removeChild(notification);
+            }, 300);
+          }, 3000);
+        }
+        
+        // Initialize cart count on page load
+        updateCartCount();
+      });
+    </script>
   </body>
 </html> 
