@@ -4,7 +4,8 @@
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "assets/**", "use": "@vercel/static" },
     { "src": "components/**", "use": "@vercel/static" },
-    { "src": "js/**", "use": "@vercel/static" }
+    { "src": "js/**", "use": "@vercel/static" },
+    { "src": "pages/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "handle": "filesystem" },
