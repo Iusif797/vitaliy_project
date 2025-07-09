@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Для автолюбителей - Parazita Kusok</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../js/utils.js" defer></script>
+    <script src="/js/utils.js" defer></script>
     <style>
         .header-spacer { height: 120px; }
         @media (max-width: 768px) { .header-spacer { height: 100px; } }
@@ -13,7 +13,7 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <div data-include="../components/header.html"></div>
+    <div data-include="/components/header.html"></div>
     <div class="header-spacer bg-white"></div>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -116,23 +116,23 @@
         </div>
     </main>
 
-    <div data-include="../components/footer.html"></div>
-    <div data-include="../components/sprite.html"></div>
+    <div data-include="/components/footer.html"></div>
+    <div data-include="/components/sprite.html"></div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const products = [
-            { id: 1, author: 'FallenBrick', name: 'Стикерпак «Мотивация» длинное название длиннее чем может быть', price: 70, image: '../assets/girl_sticker.png' },
-            { id: 2, author: 'Aneyrin', name: 'Стикер «Канагава»', price: 80, image: '../assets/girl_sticker.png' },
-            { id: 3, author: 'FallenBrick', name: 'Стикерпак «Коты»', price: 75, image: '../assets/girl_sticker.png' },
-            { id: 4, author: 'Aneyrin', name: 'Стикер «Самурай»', price: 90, image: '../assets/girl_sticker.png' },
-            { id: 5, author: 'FallenBrick', name: 'Стикерпак «Аниме»', price: 60, image: '../assets/girl_sticker.png' },
-            { id: 6, author: 'Aneyrin', name: 'Стикер «Гейша»', price: 85, image: '../assets/girl_sticker.png' },
-            { id: 7, author: 'FallenBrick', name: 'Стикерпак «Природа»', price: 70, image: '../assets/girl_sticker.png' },
-            { id: 8, author: 'Aneyrin', name: 'Стикер «Дракон»', price: 95, image: '../assets/girl_sticker.png' },
-            { id: 9, author: 'FallenBrick', name: 'Стикерпак «Еда»', price: 65, image: '../assets/girl_sticker.png' },
-            { id: 10, author: 'Aneyrin', name: 'Стикер «Рыбка»', price: 80, image: '../assets/girl_sticker.png' },
-            { id: 11, author: 'FallenBrick', name: 'Стикерпак «Космос»', price: 70, image: '../assets/girl_sticker.png' },
-            { id: 12, author: 'Aneyrin', name: 'Стикер «Планета»', price: 90, image: '../assets/girl_sticker.png' },
+            { id: 1, author: 'FallenBrick', name: 'Стикерпак «Мотивация» длинное название длиннее чем может быть', price: 70, image: '/assets/girl_sticker.png' },
+            { id: 2, author: 'Aneyrin', name: 'Стикер «Канагава»', price: 80, image: '/assets/girl_sticker.png' },
+            { id: 3, author: 'FallenBrick', name: 'Стикерпак «Коты»', price: 75, image: '/assets/girl_sticker.png' },
+            { id: 4, author: 'Aneyrin', name: 'Стикер «Самурай»', price: 90, image: '/assets/girl_sticker.png' },
+            { id: 5, author: 'FallenBrick', name: 'Стикерпак «Аниме»', price: 60, image: '/assets/girl_sticker.png' },
+            { id: 6, author: 'Aneyrin', name: 'Стикер «Гейша»', price: 85, image: '/assets/girl_sticker.png' },
+            { id: 7, author: 'FallenBrick', name: 'Стикерпак «Природа»', price: 70, image: '/assets/girl_sticker.png' },
+            { id: 8, author: 'Aneyrin', name: 'Стикер «Дракон»', price: 95, image: '/assets/girl_sticker.png' },
+            { id: 9, author: 'FallenBrick', name: 'Стикерпак «Еда»', price: 65, image: '/assets/girl_sticker.png' },
+            { id: 10, author: 'Aneyrin', name: 'Стикер «Рыбка»', price: 80, image: '/assets/girl_sticker.png' },
+            { id: 11, author: 'FallenBrick', name: 'Стикерпак «Космос»', price: 70, image: '/assets/girl_sticker.png' },
+            { id: 12, author: 'Aneyrin', name: 'Стикер «Планета»', price: 90, image: '/assets/girl_sticker.png' },
         ];
 
         const productGrid = document.getElementById('product-grid');
