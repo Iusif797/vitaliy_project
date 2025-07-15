@@ -54,7 +54,7 @@
       }
       .old-price {
         text-decoration: line-through;
-        color: #FF4A4A;
+        color: #ff4a4a;
         font-size: 0.75rem;
         margin-left: 4px;
       }
@@ -170,7 +170,7 @@
       }
       /* Единый стиль кнопки-корзины */
       .cart-btn {
-        background-color: #FFD6D6;
+        background-color: #ffd6d6;
         border-radius: 9999px;
         width: 72px;
         height: 34px;
@@ -187,22 +187,38 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background-color: #ffffff;
-        border-radius: 9999px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        padding: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 12px;
         cursor: pointer;
-        transition: background-color 0.15s ease, transform 0.15s ease;
+        transition: all 0.2s ease;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
       .banner-nav:hover {
-        background-color: #f3f4f6;
+        background-color: rgba(255, 255, 255, 1);
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+      .banner-nav img {
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
       }
     </style>
   </head>
   <body class="bg-[#F3F5F9] text-gray-900">
     <!-- Header -->
     <div data-include="./components/header.html"></div>
-    
+
     <!-- Header Spacer -->
     <div class="header-spacer bg-white"></div>
 
@@ -211,18 +227,46 @@
       <div class="relative overflow-hidden rounded-lg shadow-lg">
         <div class="banner-slider relative">
           <div class="banner-slide active">
-            <img src="./assets/main_banner.jpg" alt="Стикербук Народные русские сказки" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover">
+            <img
+              src="./assets/main_banner.jpg"
+              alt="Стикербук Народные русские сказки"
+              class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover"
+            />
           </div>
         </div>
-        
+
         <!-- Navigation Arrows -->
         <button class="banner-nav left-4" id="banner-prev">
-          <img src="./assets/arrow_left.svg" alt="Предыдущий" class="w-6 h-6">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
         </button>
         <button class="banner-nav right-4" id="banner-next">
-          <img src="./assets/arrow_right.svg" alt="Следующий" class="w-6 h-6">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
         </button>
-        
+
         <!-- Dots Indicator -->
         <div class="slider-dots">
           <div class="dot active"></div>
@@ -233,137 +277,296 @@
     </section>
 
     <!-- Категории -->
-    <section class="max-w-7xl mx-auto py-6 sm:py-8 md:py-10 px-3 sm:px-4 section-spacing">
+    <section
+      class="max-w-7xl mx-auto py-6 sm:py-8 md:py-10 px-3 sm:px-4 section-spacing"
+    >
       <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6">
         <a href="#" class="block">
           <div class="category-card overflow-hidden">
-            <img src="./assets/category_card.png" alt="Стикербуки" class="w-full">
+            <img
+              src="./assets/category_card.png"
+              alt="Стикербуки"
+              class="w-full"
+            />
           </div>
         </a>
         <a href="#" class="block">
           <div class="category-card overflow-hidden">
-            <img src="./assets/category_card (1).png" alt="Стикерпаки" class="w-full">
+            <img
+              src="./assets/category_card (1).png"
+              alt="Стикерпаки"
+              class="w-full"
+            />
           </div>
         </a>
         <a href="./pages/for-drivers.html" class="block">
           <div class="category-card overflow-hidden">
-            <img src="./assets/category_card (2).png" alt="Наклейки на авто" class="w-full">
+            <img
+              src="./assets/category_card (2).png"
+              alt="Наклейки на авто"
+              class="w-full"
+            />
           </div>
         </a>
         <a href="#" class="block">
           <div class="category-card overflow-hidden">
-            <img src="./assets/category_card (3).png" alt="Постеры" class="w-full">
+            <img
+              src="./assets/category_card (3).png"
+              alt="Постеры"
+              class="w-full"
+            />
           </div>
         </a>
       </div>
     </section>
 
     <!-- Художник недели -->
-    <section class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing">
+    <section
+      class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing"
+    >
       <div class="flex items-center mb-4 sm:mb-6 section-header-mobile">
         <div class="flex items-center">
-          <img src="./assets/creator_avatar.svg" alt="DimBo" class="w-10 sm:w-12 h-10 sm:h-12 rounded-full mr-3">
-          <h2 class="text-lg sm:text-xl font-bold"><span class="text-[#FF3D00]">DimBo</span><span class="text-black"> — художник недели!</span></h2>
+          <img
+            src="./assets/creator_avatar.svg"
+            alt="DimBo"
+            class="w-10 sm:w-12 h-10 sm:h-12 rounded-full mr-3"
+          />
+          <h2 class="text-lg sm:text-xl font-bold">
+            <span class="text-[#FF3D00]">DimBo</span
+            ><span class="text-black"> — художник недели!</span>
+          </h2>
         </div>
-        <a href="#" class="ml-auto text-sm text-[#FF3D00] font-medium no-underline">Смотреть все</a>
+        <a
+          href="#"
+          class="ml-auto text-sm text-[#FF3D00] font-medium no-underline"
+          >Смотреть все</a
+        >
       </div>
-      <div class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-        <div class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+      <div
+        class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 md:gap-6"
+      >
+        <div
+          class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image.png" alt="Стикерпак" class="w-full">
-            <button class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img src="./assets/card_image.png" alt="Стикерпак" class="w-full" />
+            <button
+              class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Стикерпак «Мотивация»</p>
-            <p class="text-xs text-gray-500 truncate product-text">длинное название длиннее чем может быть</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Стикерпак «Мотивация»
+            </p>
+            <p class="text-xs text-gray-500 truncate product-text">
+              длинное название длиннее чем может быть
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (1).png" alt="Стикерпак" class="w-full">
-            <button class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (1).png"
+              alt="Стикерпак"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Стикерпак «Мотивация»</p>
-            <p class="text-xs text-gray-500 truncate product-text">длинное название длиннее чем может быть</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Стикерпак «Мотивация»
+            </p>
+            <p class="text-xs text-gray-500 truncate product-text">
+              длинное название длиннее чем может быть
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (2).png" alt="Стикерпак" class="w-full">
-            <button class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (2).png"
+              alt="Стикерпак"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Стикерпак «Мотивация»</p>
-            <p class="text-xs text-gray-500 truncate product-text">длинное название длиннее чем может быть</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Стикерпак «Мотивация»
+            </p>
+            <p class="text-xs text-gray-500 truncate product-text">
+              длинное название длиннее чем может быть
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (3).png" alt="Стикерпак" class="w-full">
-            <button class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (3).png"
+              alt="Стикерпак"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Стикерпак «Мотивация»</p>
-            <p class="text-xs text-gray-500 truncate product-text">длинное название длиннее чем может быть</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Стикерпак «Мотивация»
+            </p>
+            <p class="text-xs text-gray-500 truncate product-text">
+              длинное название длиннее чем может быть
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+        <div
+          class="artist-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (4).png" alt="Стикерпак" class="w-full">
-            <button class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (4).png"
+              alt="Стикерпак"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 right-2 bg-white p-1 sm:p-1.5 rounded-full"
+            >
+              <svg
+                class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Стикерпак «Мотивация»</p>
-            <p class="text-xs text-gray-500 truncate product-text">длинное название длиннее чем может быть</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Стикерпак «Мотивация»
+            </p>
+            <p class="text-xs text-gray-500 truncate product-text">
+              длинное название длиннее чем может быть
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
@@ -372,87 +575,175 @@
     </section>
 
     <!-- Книги -->
-    <section class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing">
+    <section
+      class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing"
+    >
       <div class="flex items-center mb-4 sm:mb-6 section-header-mobile">
         <h2 class="text-lg sm:text-xl font-bold text-gray-800">Книги</h2>
-        <a href="#" class="ml-auto text-sm text-[#FF4A4A] bg-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium shadow-sm">Смотреть все</a>
+        <a
+          href="#"
+          class="ml-auto text-sm text-[#FF4A4A] bg-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium shadow-sm"
+          >Смотреть все</a
+        >
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
-        <div class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4"
+      >
+        <div
+          class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (5).png" alt="Книга" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img src="./assets/card_image (5).png" alt="Книга" class="w-full" />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3 sm:p-3 md:p-4">
-            <p class="text-xs sm:text-sm text-gray-700 mb-1">Книга с наклейками #FOLLOWRUSSIA часть 2</p>
+            <p class="text-xs sm:text-sm text-gray-700 mb-1">
+              Книга с наклейками #FOLLOWRUSSIA часть 2
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-base sm:text-lg">900 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+        <div
+          class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (6).png" alt="Книга" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img src="./assets/card_image (6).png" alt="Книга" class="w-full" />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3 sm:p-3 md:p-4">
-            <p class="text-xs sm:text-sm text-gray-700 mb-1">Книга с наклейками #FOLLOWRUSSIA</p>
+            <p class="text-xs sm:text-sm text-gray-700 mb-1">
+              Книга с наклейками #FOLLOWRUSSIA
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-base sm:text-lg">900 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+        <div
+          class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (7).png" alt="Книга" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img src="./assets/card_image (7).png" alt="Книга" class="w-full" />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3 sm:p-3 md:p-4">
-            <p class="text-xs sm:text-sm text-gray-700 mb-1">Книга с наклейками "Липкие буквы"</p>
+            <p class="text-xs sm:text-sm text-gray-700 mb-1">
+              Книга с наклейками "Липкие буквы"
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <div class="flex items-baseline">
                 <span class="font-bold text-base sm:text-lg">999 ₽</span>
                 <span class="old-price">1 500 ₽</span>
               </div>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+        <div
+          class="product-card book-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (8).png" alt="Книга" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img src="./assets/card_image (8).png" alt="Книга" class="w-full" />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3 sm:p-3 md:p-4">
-            <p class="text-xs sm:text-sm text-gray-700 mb-1">Книга с наклейками «Parazita Kusok 4.1 - COSMIC ISSUE»</p>
+            <p class="text-xs sm:text-sm text-gray-700 mb-1">
+              Книга с наклейками «Parazita Kusok 4.1 - COSMIC ISSUE»
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-base sm:text-lg">1 800 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
@@ -461,108 +752,242 @@
     </section>
 
     <!-- Популярные стикеры -->
-    <section class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing">
+    <section
+      class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing"
+    >
       <div class="flex items-center mb-4 sm:mb-6 section-header-mobile">
-        <h2 class="text-lg sm:text-xl font-bold text-gray-800">Популярные стикеры</h2>
-        <a href="#" class="ml-auto text-sm text-[#FF4A4A] bg-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium shadow-sm">Смотреть все</a>
+        <h2 class="text-lg sm:text-xl font-bold text-gray-800">
+          Популярные стикеры
+        </h2>
+        <a
+          href="#"
+          class="ml-auto text-sm text-[#FF4A4A] bg-white px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium shadow-sm"
+          >Смотреть все</a
+        >
       </div>
-      <div class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
-        <div class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+      <div
+        class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4"
+      >
+        <div
+          class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (9).png" alt="Стикер" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (9).png"
+              alt="Стикер"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Автор: Aneyrin</p>
-            <p class="text-xs text-gray-700 font-bold">Большой котяра в Канагаве</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Автор: Aneyrin
+            </p>
+            <p class="text-xs text-gray-700 font-bold">
+              Большой котяра в Канагаве
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (10).png" alt="Стикер" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (10).png"
+              alt="Стикер"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Автор: Firsman</p>
-            <p class="text-xs text-gray-700 font-bold">Стикер Покемон - Бидрилл</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Автор: Firsman
+            </p>
+            <p class="text-xs text-gray-700 font-bold">
+              Стикер Покемон - Бидрилл
+            </p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (11).png" alt="Стикер" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (11).png"
+              alt="Стикер"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Автор: crookedaa</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Автор: crookedaa
+            </p>
             <p class="text-xs text-gray-700 font-bold">Саке</p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (12).png" alt="Стикер" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (12).png"
+              alt="Стикер"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Автор: crookedaa</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Автор: crookedaa
+            </p>
             <p class="text-xs text-gray-700 font-bold">Поски</p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
         </div>
-        <div class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="product-card sticker-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (13).png" alt="Стикер" class="w-full">
-            <button class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent">
-              <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            <img
+              src="./assets/card_image (13).png"
+              alt="Стикер"
+              class="w-full"
+            />
+            <button
+              class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-transparent"
+            >
+              <svg
+                class="w-5 h-5 sm:w-6 sm:h-6 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
           <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1 product-text">Автор: Enginestyle</p>
+            <p class="text-xs text-gray-500 mb-1 product-text">
+              Автор: Enginestyle
+            </p>
             <p class="text-xs text-gray-700 font-bold">Стикер "Хонда цивик"</p>
             <div class="flex justify-between items-center mt-1 sm:mt-2">
               <span class="font-bold text-sm sm:text-base">70 ₽</span>
               <button>
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-7 sm:w-8 h-7 sm:h-8"
+                />
               </button>
             </div>
           </div>
@@ -571,19 +996,45 @@
     </section>
 
     <!-- Популярные стикерпаки -->
-    <section class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing">
+    <section
+      class="max-w-7xl mx-auto py-5 sm:py-6 md:py-8 px-3 sm:px-4 section-spacing"
+    >
       <div class="flex items-center mb-4 sm:mb-6 section-header-mobile">
-        <h2 class="text-lg sm:text-xl font-bold text-gray-800">Популярные стикерпаки</h2>
-        <a href="#" class="ml-auto text-sm text-white bg-[#FF4A4A] px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium">Смотреть все</a>
+        <h2 class="text-lg sm:text-xl font-bold text-gray-800">
+          Популярные стикерпаки
+        </h2>
+        <a
+          href="#"
+          class="ml-auto text-sm text-white bg-[#FF4A4A] px-3 py-1 sm:px-4 sm:py-1.5 rounded-full font-medium"
+          >Смотреть все</a
+        >
       </div>
-      <div class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+      <div
+        class="card-grid-mobile sm:grid sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4"
+      >
         <!-- Card 1 -->
-        <div class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (14).png" alt="Отряд самоубийц в полном сборе" class="w-full">
+            <img
+              src="./assets/card_image (14).png"
+              alt="Отряд самоубийц в полном сборе"
+              class="w-full"
+            />
             <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full">
-              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              <svg
+                class="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
@@ -592,24 +1043,49 @@
             <p class="text-xs text-gray-700">Отряд самоубийц в полном сборе</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
-                data-id="1" 
-                data-name="Эмоциональные белки - Животные" 
-                data-price="300" 
+              <button
+                class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                data-id="1"
+                data-name="Эмоциональные белки - Животные"
+                data-price="300"
                 data-img="./assets/card_image.png"
-                data-category="Стикерпак">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+                data-category="Стикерпак"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
               </button>
             </div>
           </div>
         </div>
         <!-- Card 2 -->
-        <div class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/image (2).png" alt="Супергерои" class="w-full">
+            <img src="./assets/image (2).png" alt="Супергерои" class="w-full" />
             <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full">
-              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              <svg
+                class="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
@@ -619,18 +1095,34 @@
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">250 ₽</span>
               <button class="cart-btn">
-                <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-6 h-6">
+                <img
+                  src="./assets/button_add.svg"
+                  alt="Добавить в корзину"
+                  class="w-6 h-6"
+                />
               </button>
             </div>
           </div>
         </div>
         <!-- Card 3 -->
-        <div class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/image (3).png" alt="Homestuck" class="w-full">
+            <img src="./assets/image (3).png" alt="Homestuck" class="w-full" />
             <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full">
-              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              <svg
+                class="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
@@ -639,24 +1131,53 @@
             <p class="text-xs text-gray-700">Наклейки Homestuck</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
-                data-id="1" 
-                data-name="Эмоциональные белки - Животные" 
-                data-price="300" 
+              <button
+                class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                data-id="1"
+                data-name="Эмоциональные белки - Животные"
+                data-price="300"
                 data-img="./assets/card_image.png"
-                data-category="Стикерпак">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+                data-category="Стикерпак"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
               </button>
             </div>
           </div>
         </div>
         <!-- Card 4 -->
-        <div class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0">
+        <div
+          class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm mb-2 sm:mb-0"
+        >
           <div class="relative">
-            <img src="./assets/card_image (15).png" alt="Наклейки Homestuck" class="w-full">
+            <img
+              src="./assets/card_image (15).png"
+              alt="Наклейки Homestuck"
+              class="w-full"
+            />
             <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full">
-              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              <svg
+                class="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
@@ -665,24 +1186,53 @@
             <p class="text-xs text-gray-700">Наклейки Homestuck</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
-                data-id="1" 
-                data-name="Эмоциональные белки - Животные" 
-                data-price="300" 
+              <button
+                class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                data-id="1"
+                data-name="Эмоциональные белки - Животные"
+                data-price="300"
                 data-img="./assets/card_image.png"
-                data-category="Стикерпак">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+                data-category="Стикерпак"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
               </button>
             </div>
           </div>
         </div>
         <!-- Card 5 -->
-        <div class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm">
+        <div
+          class="stickerpack-card bg-white rounded-lg overflow-hidden relative shadow-sm"
+        >
           <div class="relative">
-            <img src="./assets/card_image (16).png" alt="Stickers Homestuck Kids" class="w-full">
+            <img
+              src="./assets/card_image (16).png"
+              alt="Stickers Homestuck Kids"
+              class="w-full"
+            />
             <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full">
-              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              <svg
+                class="w-5 h-5 text-gray-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
               </svg>
             </button>
           </div>
@@ -691,13 +1241,26 @@
             <p class="text-xs text-gray-700">Наклейки Хоумстак детки</p>
             <div class="flex justify-between items-center mt-2">
               <span class="font-bold text-base">300 ₽</span>
-              <button class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200" 
-                data-id="1" 
-                data-name="Эмоциональные белки - Животные" 
-                data-price="300" 
+              <button
+                class="add-to-cart bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200"
+                data-id="1"
+                data-name="Эмоциональные белки - Животные"
+                data-price="300"
                 data-img="./assets/card_image.png"
-                data-category="Стикерпак">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path></svg>
+                data-category="Стикерпак"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4v16m8-8H4"
+                  ></path>
+                </svg>
               </button>
             </div>
           </div>
@@ -708,25 +1271,62 @@
     <!-- Promo Banner (central) -->
     <section class="w-full px-2 sm:px-4 mt-12">
       <div class="relative max-w-7xl mx-auto promo-slider">
-        <img src="./assets/banner2.png" alt="Акции Parazita" class="w-full rounded-lg" id="promo-image">
+        <img
+          src="./assets/banner2.png"
+          alt="Акции Parazita"
+          class="w-full rounded-lg"
+          id="promo-image"
+        />
         <!-- Nav arrows -->
-        <button class="banner-nav left-4 promo-prev" aria-label="Предыдущий баннер">
-          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        <button
+          class="banner-nav left-4 promo-prev"
+          aria-label="Предыдущий баннер"
+        >
+          <svg
+            class="w-5 h-5 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
-        <button class="banner-nav right-4 promo-next" aria-label="Следующий баннер">
-          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        <button
+          class="banner-nav right-4 promo-next"
+          aria-label="Следующий баннер"
+        >
+          <svg
+            class="w-5 h-5 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
       </div>
     </section>
 
     <!-- Преимущества -->
-    <section class="max-w-7xl mx-auto bg-white rounded-lg mt-6 mb-12 py-8 px-4 sm:px-8">
-      <h2 class="text-xl sm:text-2xl font-bold text-center mb-8">Преимущества Parazita Kusok</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10 max-w-3xl mx-auto text-gray-900 text-sm sm:text-base">
+    <section
+      class="max-w-7xl mx-auto bg-white rounded-lg mt-6 mb-12 py-8 px-4 sm:px-8"
+    >
+      <h2 class="text-xl sm:text-2xl font-bold text-center mb-8">
+        Преимущества Parazita Kusok
+      </h2>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10 max-w-3xl mx-auto text-gray-900 text-sm sm:text-base"
+      >
         <p>Работаем с 2011 года</p>
         <p>Специализируемся на стикерах и стикерпаках</p>
         <p>Своё производство</p>
@@ -738,26 +1338,26 @@
     <div data-include="./components/footer.html"></div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         // Existing code...
-        
+
         // Add to cart functionality
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        
-        addToCartButtons.forEach(button => {
-          button.addEventListener('click', function() {
+        const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+        addToCartButtons.forEach((button) => {
+          button.addEventListener("click", function () {
             const id = this.dataset.id;
             const name = this.dataset.name;
             const price = this.dataset.price;
             const img = this.dataset.img;
             const category = this.dataset.category;
-            
+
             // Get cart from localStorage or initialize empty array
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
             // Check if product already in cart
-            const existingItem = cart.find(item => item.id === id);
-            
+            const existingItem = cart.find((item) => item.id === id);
+
             if (existingItem) {
               existingItem.quantity += 1;
             } else {
@@ -767,71 +1367,75 @@
                 price,
                 img,
                 category,
-                quantity: 1
+                quantity: 1,
               });
             }
-            
+
             // Save cart to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
+            localStorage.setItem("cart", JSON.stringify(cart));
+
             // Update cart count in header
             updateCartCount();
-            
+
             // Show notification
             showNotification(`${name} добавлен в корзину`);
           });
         });
-        
+
         // Update cart count function
         function updateCartCount() {
-          const cart = JSON.parse(localStorage.getItem('cart')) || [];
-          const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-          
-          const cartCountElements = document.querySelectorAll('.cart-count');
-          cartCountElements.forEach(element => {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const cartCount = cart.reduce(
+            (total, item) => total + item.quantity,
+            0
+          );
+
+          const cartCountElements = document.querySelectorAll(".cart-count");
+          cartCountElements.forEach((element) => {
             element.textContent = cartCount;
-            element.classList.toggle('hidden', cartCount === 0);
+            element.classList.toggle("hidden", cartCount === 0);
           });
         }
-        
+
         // Show notification function
         function showNotification(message) {
           // Create notification element
-          const notification = document.createElement('div');
-          notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300';
+          const notification = document.createElement("div");
+          notification.className =
+            "fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300";
           notification.textContent = message;
-          
+
           document.body.appendChild(notification);
-          
+
           // Show notification
           setTimeout(() => {
-            notification.classList.remove('translate-y-10', 'opacity-0');
+            notification.classList.remove("translate-y-10", "opacity-0");
           }, 100);
-          
+
           // Hide and remove notification
           setTimeout(() => {
-            notification.classList.add('translate-y-10', 'opacity-0');
+            notification.classList.add("translate-y-10", "opacity-0");
             setTimeout(() => {
               document.body.removeChild(notification);
             }, 300);
           }, 3000);
         }
-        
+
         // Initialize cart count on page load
         updateCartCount();
       });
 
       // Banner slider functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const bannerPrev = document.getElementById('banner-prev');
-        const bannerNext = document.getElementById('banner-next');
-        const dots = document.querySelectorAll('.slider-dots .dot');
+      document.addEventListener("DOMContentLoaded", function () {
+        const bannerPrev = document.getElementById("banner-prev");
+        const bannerNext = document.getElementById("banner-next");
+        const dots = document.querySelectorAll(".slider-dots .dot");
         let currentSlide = 0;
         const totalSlides = 3;
 
         function updateSlider() {
           dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
+            dot.classList.toggle("active", index === currentSlide);
           });
         }
 
@@ -845,11 +1449,11 @@
           updateSlider();
         }
 
-        bannerNext.addEventListener('click', nextSlide);
-        bannerPrev.addEventListener('click', prevSlide);
+        bannerNext.addEventListener("click", nextSlide);
+        bannerPrev.addEventListener("click", prevSlide);
 
         dots.forEach((dot, index) => {
-          dot.addEventListener('click', () => {
+          dot.addEventListener("click", () => {
             currentSlide = index;
             updateSlider();
           });
@@ -859,4 +1463,4 @@
       });
     </script>
   </body>
-</html> 
+</html>
