@@ -124,14 +124,7 @@ function setupMobileFeatures() {
     const mobileMenuToggle = document.getElementById('menu-toggle');
     const mobileSearchToggle = document.getElementById('search-toggle');
 
-    if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu) {
-          mobileMenu.classList.toggle('hidden');
-        }
-      });
-    }
+    // Обработчик меню задаётся в компоненте header.html, чтобы избежать конфликта не добавляем его здесь
 
     if (mobileSearchToggle) {
       mobileSearchToggle.addEventListener('click', () => {
