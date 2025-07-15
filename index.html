@@ -206,14 +206,31 @@
     <!-- Header Spacer -->
     <div class="header-spacer bg-white"></div>
 
-    <!-- Banner -->
-    <!-- Removed -->
-
-    <!-- Promo Banner 2 (above footer) -->
-    <!-- Removed -->
-
-    <!-- Преимущества -->
-    <!-- Removed -->
+    <!-- Main Banner -->
+    <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+      <div class="relative overflow-hidden rounded-lg shadow-lg">
+        <div class="banner-slider relative">
+          <div class="banner-slide active">
+            <img src="./assets/main_banner.jpg" alt="Стикербук Народные русские сказки" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover">
+          </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="banner-nav left-4" id="banner-prev">
+          <img src="./assets/arrow_left.svg" alt="Предыдущий" class="w-6 h-6">
+        </button>
+        <button class="banner-nav right-4" id="banner-next">
+          <img src="./assets/arrow_right.svg" alt="Следующий" class="w-6 h-6">
+        </button>
+        
+        <!-- Dots Indicator -->
+        <div class="slider-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- Категории -->
     <section class="max-w-7xl mx-auto py-6 sm:py-8 md:py-10 px-3 sm:px-4 section-spacing">
@@ -802,6 +819,43 @@
         
         // Initialize cart count on page load
         updateCartCount();
+      });
+
+      // Banner slider functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const bannerPrev = document.getElementById('banner-prev');
+        const bannerNext = document.getElementById('banner-next');
+        const dots = document.querySelectorAll('.slider-dots .dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateSlider() {
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+          });
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          updateSlider();
+        }
+
+        function prevSlide() {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          updateSlider();
+        }
+
+        bannerNext.addEventListener('click', nextSlide);
+        bannerPrev.addEventListener('click', prevSlide);
+
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlider();
+          });
+        });
+
+        setInterval(nextSlide, 5000);
       });
     </script>
   </body>
