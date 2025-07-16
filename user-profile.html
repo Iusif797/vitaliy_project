@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlackLineWhite | Parazita Kusok</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./js/utils.js" defer></script>
+    <style>
+        .header-spacer {
+            height: 120px;
+        }
+
+        .profile-banner {
+            background-image: url('./assets/background_profile.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .profile-info-section {
+            background: white;
+            border-radius: 12px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .star-rating {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .star {
+            width: 14px;
+            height: 14px;
+            fill: #fbbf24;
+        }
+
+        .profile-avatar {
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn {
+            transition: all 0.2s ease;
+            border-radius: 20px;
+            font-weight: 500;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            border: 1px solid;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .share-btn {
+            background: white;
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .follow-btn {
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .header-spacer {
+                height: 100px;
+            }
+
+            .profile-banner {
+                margin: 8px;
+                height: 220px;
+            }
+
+            .profile-info-section {
+                margin: 0 8px;
+                margin-top: -40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-spacer {
+                height: 80px;
+            }
+
+            .profile-banner {
+                height: 180px;
+            }
+
+            .action-btn {
+                padding: 6px 16px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#F3F5F9] text-gray-900">
+    <div data-include="./components/header.html"></div>
+    <div class="header-spacer bg-white"></div>
+
+    <!-- Profile Banner -->
+    <div class="max-w-7xl mx-auto px-3 sm:px-4">
+        <section class="profile-banner"></section>
+
+        <!-- Profile Info Section -->
+        <section class="profile-info-section">
+            <div class="p-6">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <!-- Left side: Avatar and Info -->
+                    <div class="flex items-center gap-4">
+                        <!-- Avatar -->
+                        <div class="flex-shrink-0">
+                            <img src="./assets/avatar_profile.png" alt="BlackLineWhite"
+                                class="profile-avatar w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover" />
+                        </div>
+
+                        <!-- Profile Info -->
+                        <div>
+                            <h1 class="text-xl sm:text-2xl font-bold mb-1 text-gray-900">BlackLineWhite</h1>
+
+                            <!-- Rating -->
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="star-rating">
+                                    <svg class="star" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <svg class="star" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                                            stroke="#fbbf24" stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <span class="text-sm font-medium text-gray-900">4.9</span>
+                            </div>
+
+                            <!-- Followers -->
+                            <p class="text-gray-600 text-sm">1 подписчик</p>
+                        </div>
+                    </div>
+
+                    <!-- Right side: Action Buttons -->
+                    <div class="flex gap-3">
+                        <button class="action-btn share-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                            </svg>
+                            Поделиться
+                        </button>
+                        <button class="action-btn follow-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            Подписаться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Profile Content -->
+    <section class="max-w-7xl mx-auto px-3 sm:px-4 py-8">
+        <!-- Tabs -->
+        <div class="flex justify-center border-b border-gray-200 mb-8">
+            <button class="tab-btn px-6 py-3 text-sm font-medium border-b-2 border-[#ff4a4a] text-[#ff4a4a]">
+                Магазин
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
+                Об авторе
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium text-gray-500 hover:text-gray-700">
+                Лента
+            </button>
+        </div>
+
+        <!-- Works Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+            <!-- Row 1 -->
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (9).png" alt="Большой котяра в Канагаве"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Большой котяра в Канагаве</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (10).png" alt="Стикер Покемон - Бидрилл"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер Покемон - Бидрилл</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (11).png" alt="Саке" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Саке</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (12).png" alt="Покки" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Покки</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#9ca3af] text-white px-6 py-2 rounded-full text-sm font-medium cursor-not-allowed flex items-center gap-1">
+                        ✓
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (13).png" alt="Стикер Хонда цивик"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер "Хонда цивик"</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (9).png" alt="Большой котяра в Канагаве"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Большой котяра в Канагаве</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (10).png" alt="Стикер Покемон - Бидрилл"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер Покемон - Бидрилл</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (11).png" alt="Саке" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Саке</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (12).png" alt="Покки" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Покки</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#9ca3af] text-white px-6 py-2 rounded-full text-sm font-medium cursor-not-allowed flex items-center gap-1">
+                        ✓
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (13).png" alt="Стикер Хонда цивик"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер "Хонда цивик"</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (9).png" alt="Большой котяра в Канагаве"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Большой котяра в Канагаве</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (10).png" alt="Стикер Покемон - Бидрилл"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер Покемон - Бидрилл</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (11).png" alt="Саке" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Саке</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (12).png" alt="Покки" class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Покки</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#9ca3af] text-white px-6 py-2 rounded-full text-sm font-medium cursor-not-allowed flex items-center gap-1">
+                        ✓
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-4">
+                <div class="relative mb-3">
+                    <div class="border-2 border-gray-800 p-2 bg-white">
+                        <img src="./assets/card_image (13).png" alt="Стикер Хонда цивик"
+                            class="w-full h-24 sm:h-32 object-cover" />
+                    </div>
+                    <button class="absolute top-2 right-2 text-gray-400 hover:text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-gray-600 mb-2">Стикер "Хонда цивик"</p>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold text-lg">70 ₽</span>
+                    <button
+                        class="bg-[#ffb3b3] hover:bg-[#ff9999] text-white px-6 py-2 rounded-full text-sm font-medium transition-colors flex items-center gap-1">
+                        🛒
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-8">
+            <button
+                class="bg-white text-[#ff6b6b] px-8 py-3 rounded-full border border-[#ff6b6b] hover:bg-[#ff6b6b] hover:text-white transition-colors font-medium">
+                Загрузить еще
+            </button>
+        </div>
+    </section>
+
+    <div data-include="./components/footer.html"></div>
+
+    <script>
+        // Tab switching functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabBtns.forEach(tab => {
+                    tab.classList.remove('border-[#ff4a4a]', 'text-[#ff4a4a]');
+                    tab.classList.add('text-gray-500');
+                });
+
+                // Add active class to clicked tab
+                btn.classList.add('border-[#ff4a4a]', 'text-[#ff4a4a]');
+                btn.classList.remove('text-gray-500');
+            });
+        });
+    </script>
+</body>
+
+</html>

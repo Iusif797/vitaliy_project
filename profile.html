@@ -1,79 +1,124 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Профиль | Parazita Kusok</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./js/utils.js" defer></script>
-    <style>
-      @keyframes float {
-        0%,100% {transform: translateY(0) scale(1);} 50% {transform: translateY(-12px) scale(1.04);} }
-      .logo-animate {animation: float 5s ease-in-out infinite;}
-      .tab-btn{transition:all .2s ease;}
-      .tab-active{color:#ff4a4a;background:#ffffff;border-bottom:2px solid #ff4a4a;font-weight:600;}
-      .header-spacer{height:120px;}
-      @media(max-width:768px){.header-spacer{height:100px;}}
-      @media(max-width:640px){.header-spacer{height:80px;}}
-    </style>
-  </head>
-  <body class="bg-[#F3F5F9] text-gray-900">
-    <div data-include="./components/header.html"></div>
-    <div class="header-spacer bg-white"></div>
 
-    <main class="max-w-7xl mx-auto px-3 sm:px-4 py-8 flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-24">
-      <div class="flex-1 flex justify-center lg:justify-start">
-        <img src="./assets/Logo.png" alt="Parazita Kusok" class="w-40 sm:w-64 lg:w-96 logo-animate" />
-      </div>
-      <div class="flex-1 max-w-md w-full bg-white rounded-lg shadow-md p-6 sm:p-8">
-        <div class="flex justify-center mb-6">
-          <div class="bg-gray-100 rounded-full p-1 flex w-full shadow-inner">
-            <button id="tab-login" class="tab-btn flex-1 text-center py-2 text-sm sm:text-base rounded-full">Вход</button>
-            <button id="tab-register" class="tab-btn flex-1 text-center py-2 text-sm sm:text-base rounded-full tab-active">Регистрация</button>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Профиль | Parazita Kusok</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./js/utils.js" defer></script>
+  <style>
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-12px) scale(1.04);
+      }
+    }
+
+    .logo-animate {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .tab-btn {
+      transition: all .2s ease;
+    }
+
+    .tab-active {
+      color: #ff4a4a;
+      background: #ffffff;
+      border-bottom: 2px solid #ff4a4a;
+      font-weight: 600;
+    }
+
+    .header-spacer {
+      height: 120px;
+    }
+
+    @media(max-width:768px) {
+      .header-spacer {
+        height: 100px;
+      }
+    }
+
+    @media(max-width:640px) {
+      .header-spacer {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F3F5F9] text-gray-900">
+  <div data-include="./components/header.html"></div>
+  <div class="header-spacer bg-white"></div>
+
+  <main
+    class="max-w-7xl mx-auto px-3 sm:px-4 py-8 flex flex-col lg:flex-row items-center lg:items-center gap-10 lg:gap-24">
+    <div class="flex-1 flex justify-center lg:justify-start">
+      <img src="./assets/Logo.png" alt="Parazita Kusok" class="w-40 sm:w-64 lg:w-96 logo-animate" />
+    </div>
+    <div class="flex-1 max-w-md w-full bg-white rounded-lg shadow-md p-6 sm:p-8">
+      <div class="flex justify-center mb-6">
+        <div class="bg-gray-100 rounded-full p-1 flex w-full shadow-inner">
+          <button id="tab-login" class="tab-btn flex-1 text-center py-2 text-sm sm:text-base rounded-full">Вход</button>
+          <button id="tab-register"
+            class="tab-btn flex-1 text-center py-2 text-sm sm:text-base rounded-full tab-active">Регистрация</button>
         </div>
-        <form id="form-login" class="space-y-4 hidden">
-          <input type="email" placeholder="Email" class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
-          <input type="password" placeholder="Пароль" class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
-          <div class="flex justify-center">
-            <button type="submit">
-              <img src="./assets/Enter_button.png" alt="Войти" class="w-full max-w-xs" />
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <button type="button">
-              <img src="./assets/VK_button.png" alt="VK ID" class="w-full max-w-xs" />
-            </button>
-          </div>
-        </form>
-        <form id="form-register" class="space-y-4">
-          <input type="text" placeholder="Имя" class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
-          <input type="email" placeholder="Email" class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
-          <input type="password" placeholder="Пароль" class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
-          <label class="flex items-start text-xs sm:text-sm"><input type="checkbox" class="mt-1 mr-2">Я даю согласие на обработку и хранение своих персональных данных и согласен с политикой конфиденциальности</label>
-          <div class="flex justify-center">
-            <button type="submit">
-              <img src="./assets/Enter_button.png" alt="Зарегистрироваться" class="w-full max-w-xs" />
-            </button>
-          </div>
-          <div class="flex justify-center">
-            <button type="button">
-              <img src="./assets/VK_button.png" alt="VK ID" class="w-full max-w-xs" />
-            </button>
-          </div>
-        </form>
       </div>
-    </main>
+      <form id="form-login" class="space-y-4 hidden">
+        <input type="email" placeholder="Email"
+          class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
+        <input type="password" placeholder="Пароль"
+          class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
+        <div class="flex justify-center">
+          <button type="button" onclick="window.location.href='./user-profile.html';">
+            <img src="./assets/Enter_button.png" alt="Войти" class="w-full max-w-xs" />
+          </button>
+        </div>
+        <div class="flex justify-center">
+          <button type="button">
+            <img src="./assets/VK_button.png" alt="VK ID" class="w-full max-w-xs" />
+          </button>
+        </div>
+      </form>
+      <form id="form-register" class="space-y-4">
+        <input type="text" placeholder="Имя"
+          class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
+        <input type="email" placeholder="Email"
+          class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
+        <input type="password" placeholder="Пароль"
+          class="w-full h-10 px-4 rounded border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#ff4a4a]" />
+        <label class="flex items-start text-xs sm:text-sm"><input type="checkbox" class="mt-1 mr-2">Я даю согласие на
+          обработку и хранение своих персональных данных и согласен с политикой конфиденциальности</label>
+        <div class="flex justify-center">
+          <button type="submit">
+            <img src="./assets/Enter_button.png" alt="Зарегистрироваться" class="w-full max-w-xs" />
+          </button>
+        </div>
+        <div class="flex justify-center">
+          <button type="button">
+            <img src="./assets/VK_button.png" alt="VK ID" class="w-full max-w-xs" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
 
-    <div data-include="./components/footer.html"></div>
+  <div data-include="./components/footer.html"></div>
 
-    <script>
-      const tabLogin=document.getElementById('tab-login');
-      const tabRegister=document.getElementById('tab-register');
-      const formLogin=document.getElementById('form-login');
-      const formRegister=document.getElementById('form-register');
-      tabLogin.addEventListener('click',()=>{tabLogin.classList.add('tab-active');tabRegister.classList.remove('tab-active');formLogin.classList.remove('hidden');formRegister.classList.add('hidden');});
-      tabRegister.addEventListener('click',()=>{tabRegister.classList.add('tab-active');tabLogin.classList.remove('tab-active');formRegister.classList.remove('hidden');formLogin.classList.add('hidden');});
-    </script>
-  </body>
-</html> 
+  <script>
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const formLogin = document.getElementById('form-login');
+    const formRegister = document.getElementById('form-register');
+    tabLogin.addEventListener('click', () => { tabLogin.classList.add('tab-active'); tabRegister.classList.remove('tab-active'); formLogin.classList.remove('hidden'); formRegister.classList.add('hidden'); });
+    tabRegister.addEventListener('click', () => { tabRegister.classList.add('tab-active'); tabLogin.classList.remove('tab-active'); formRegister.classList.remove('hidden'); formLogin.classList.add('hidden'); });
+  </script>
+</body>
+
+</html>
