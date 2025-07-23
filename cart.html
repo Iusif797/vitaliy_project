@@ -1,391 +1,393 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Корзина | Parazita Kusok</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./js/utils.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: '#FF4A4A',
-              secondary: '#F3F5F9',
-              dark: '#232b36',
-            }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Корзина | Parazita Kusok</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./js/utils.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF4A4A',
+            secondary: '#F3F5F9',
+            dark: '#232b36',
           }
         }
       }
-    </script>
-    <style>
+    }
+  </script>
+  <style>
+    .header-spacer {
+      height: 120px;
+    }
+
+    @media(max-width:768px) {
       .header-spacer {
-        height: 120px;
+        height: 100px;
       }
-      @media(max-width:768px) {
-        .header-spacer {
-          height: 100px;
-        }
-      }
-      @media(max-width:640px) {
-        .header-spacer {
-          height: 80px;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-secondary text-gray-900">
-    <div data-include="./components/header.html"></div>
-    <div class="header-spacer bg-white"></div>
+    }
 
-    <main class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
-      <h1 class="text-2xl sm:text-3xl font-bold mb-6">Корзина</h1>
-      
-      <!-- Empty cart state -->
-      <div id="empty-cart" class="flex flex-col items-center justify-center py-16 sm:py-24">
-        <div class="bg-white p-6 rounded-full mb-6 shadow-md">
-          <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400"></i>
-        </div>
-        <h2 class="text-xl font-bold mb-2">Ваша корзина пуста</h2>
-        <p class="text-gray-500 mb-6">Добавьте товары из каталога</p>
-        <a href="./index.html" class="bg-primary text-white px-8 py-3 rounded-md font-medium hover:bg-red-600 transition shadow-sm">
-          Перейти в каталог
-        </a>
+    @media(max-width:640px) {
+      .header-spacer {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-secondary text-gray-900">
+  <div data-include="./components/header.html"></div>
+  <div class="header-spacer bg-white"></div>
+
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8">
+    <h1 class="text-2xl sm:text-3xl font-bold mb-6">Корзина</h1>
+
+    <div id="empty-cart" class="flex flex-col items-center justify-center py-16 sm:py-24">
+      <div class="bg-white p-6 rounded-full mb-6 shadow-md">
+        <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400"></i>
       </div>
+      <h2 class="text-xl font-bold mb-2">Ваша корзина пуста</h2>
+      <p class="text-gray-500 mb-6">Добавьте товары из каталога</p>
+      <a href="./index.html"
+        class="bg-primary text-white px-8 py-3 rounded-md font-medium hover:bg-red-600 transition shadow-sm">
+        Перейти в каталог
+      </a>
+    </div>
 
-      <!-- Filled cart state -->
-      <div id="filled-cart" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Left column - Cart items -->
-        <div class="lg:col-span-2 space-y-4">
-          <!-- Cart item 1 -->
-          <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="w-full sm:w-24 h-24 flex-shrink-0">
-                <img src="./assets/card_image.png" alt="Эмоциональные белки" class="w-full h-full object-contain">
-              </div>
-              <div class="flex-grow">
-                <h3 class="font-medium mb-1">Эмоциональные белки - Животные максимум в 3 строки затем обрезается название вот так как сейчас</h3>
-                <div class="flex flex-wrap gap-2 mb-2">
-                  <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
-                  <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
-                </div>
-                <div class="flex justify-between items-center mt-2">
-                  <div class="flex items-center">
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="minus" class="w-4 h-4"></i>
-                    </button>
-                    <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="plus" class="w-4 h-4"></i>
-                    </button>
-                  </div>
-                  <div class="font-bold text-lg">300 ₽</div>
-                </div>
-              </div>
+    <div id="filled-cart" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
+          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="w-full sm:w-24 h-24 flex-shrink-0">
+              <img src="./assets/card_image.png" alt="Эмоциональные белки" class="w-full h-full object-contain">
             </div>
-          </div>
-          
-          <!-- Cart item 2 -->
-          <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="w-full sm:w-24 h-24 flex-shrink-0">
-                <img src="./assets/card_image (9).png" alt="Наклейки Писос" class="w-full h-full object-contain">
+            <div class="flex-grow">
+              <h3 class="font-medium mb-1">Эмоциональные белки - Животные максимум в 3 строки затем обрезается название
+                вот так как сейчас</h3>
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
+                <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
               </div>
-              <div class="flex-grow">
-                <h3 class="font-medium mb-1">Наклейки "Писос" - Животные</h3>
-                <div class="flex flex-wrap gap-2 mb-2">
-                  <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
-                  <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
+              <div class="flex justify-between items-center mt-2">
+                <div class="flex items-center">
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                  </button>
+                  <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                  </button>
                 </div>
-                <div class="flex justify-between items-center mt-2">
-                  <div class="flex items-center">
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="minus" class="w-4 h-4"></i>
-                    </button>
-                    <input type="text" value="3" class="w-10 text-center mx-2 bg-transparent" readonly>
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="plus" class="w-4 h-4"></i>
-                    </button>
-                  </div>
-                  <div class="font-bold text-lg">900 ₽</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Cart item 3 -->
-          <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-            <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <div class="w-full sm:w-24 h-24 flex-shrink-0">
-                <img src="./assets/card_image (7).png" alt="Книга с наклейками" class="w-full h-full object-contain">
-              </div>
-              <div class="flex-grow">
-                <h3 class="font-medium mb-1">Книга с наклейками "Липкие буквы" - Стикербук</h3>
-                <div class="flex flex-wrap gap-2 mb-2">
-                  <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикербук</span>
-                </div>
-                <div class="flex justify-between items-center mt-2">
-                  <div class="flex items-center">
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="minus" class="w-4 h-4"></i>
-                    </button>
-                    <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
-                    <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                      <i data-lucide="plus" class="w-4 h-4"></i>
-                    </button>
-                  </div>
-                  <div>
-                    <div class="font-bold text-lg">999 ₽</div>
-                    <div class="text-primary text-sm line-through">1 500 ₽</div>
-                  </div>
-                </div>
+                <div class="font-bold text-lg">300 ₽</div>
               </div>
             </div>
           </div>
         </div>
-        
-        <!-- Right column - Order summary -->
-        <div class="lg:col-span-1">
-          <div class="bg-white rounded-lg p-4 sm:p-6 mb-6">
-            <h2 class="text-xl font-bold mb-4">Ваш заказ</h2>
-            
-            <div class="space-y-3 mb-4">
-              <div class="flex justify-between">
-                <span class="text-gray-600">Всего товаров</span>
-                <span id="total-items">0 шт.</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Сумма</span>
-                <span id="subtotal">0 ₽</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Доставка</span>
-                <span id="shipping">200 ₽</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Доп. услуги</span>
-                <span id="additional-services">50 ₽</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Скидка</span>
-                <span id="discount">0 ₽</span>
-              </div>
+
+        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
+          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="w-full sm:w-24 h-24 flex-shrink-0">
+              <img src="./assets/card_image (9).png" alt="Наклейки Писос" class="w-full h-full object-contain">
             </div>
-            
-            <div class="border-t pt-4">
-              <div class="flex justify-between items-center">
-                <span class="font-bold">К оплате</span>
-                <span id="total" class="text-xl font-bold">0 ₽</span>
+            <div class="flex-grow">
+              <h3 class="font-medium mb-1">Наклейки "Писос" - Животные</h3>
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
+                <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
               </div>
-            </div>
-            
-            <div class="mt-6">
-              <div class="mb-4">
-                <label for="promo-input" class="block text-sm font-medium text-gray-700 mb-2">Промокод</label>
-                <div class="flex items-center border rounded-md bg-white overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition">
-                  <span class="pl-3 text-gray-400 pointer-events-none">
-                    <i data-lucide="badge-percent" class="w-5 h-5"></i>
-                  </span>
-                  <input id="promo-input" type="text" placeholder="Введите промокод" class="w-full border-0 bg-transparent focus:ring-0 py-2 pl-2 pr-3 text-sm placeholder-gray-400">
-                  <button class="apply-promo bg-transparent text-primary font-semibold hover:text-red-700 px-4 flex-shrink-0 text-sm py-2">Применить</button>
+              <div class="flex justify-between items-center mt-2">
+                <div class="flex items-center">
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                  </button>
+                  <input type="text" value="3" class="w-10 text-center mx-2 bg-transparent" readonly>
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                  </button>
                 </div>
+                <div class="font-bold text-lg">900 ₽</div>
               </div>
-              
-              <button class="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-red-600 transition mb-3">
-                Оформить заказ
-              </button>
-              
-              <button id="clear-cart" class="w-full bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition">
-                Очистить корзину
-              </button>
             </div>
           </div>
-          
-          <!-- Delivery options -->
-          <div class="bg-white rounded-lg p-4 sm:p-6">
-            <h2 class="text-xl font-bold mb-4">Выберите способ доставки</h2>
-            
-            <div class="space-y-4">
-              <label class="flex items-start">
-                <input type="radio" name="delivery" class="mt-1 mr-2">
-                <div>
-                  <div class="flex justify-between w-full">
-                    <span class="font-medium">Самовывоз</span>
-                    <span>0 ₽</span>
-                  </div>
-                  <p class="text-sm text-gray-500">Пункт выдачи работает 22/4, ПНПТ с 10:00 до 19:00</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
+          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <div class="w-full sm:w-24 h-24 flex-shrink-0">
+              <img src="./assets/card_image (7).png" alt="Книга с наклейками" class="w-full h-full object-contain">
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-medium mb-1">Книга с наклейками "Липкие буквы" - Стикербук</h3>
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикербук</span>
+              </div>
+              <div class="flex justify-between items-center mt-2">
+                <div class="flex items-center">
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="minus" class="w-4 h-4"></i>
+                  </button>
+                  <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
+                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                  </button>
                 </div>
-              </label>
-              
-              <label class="flex items-start">
-                <input type="radio" name="delivery" class="mt-1 mr-2" checked>
                 <div>
-                  <div class="flex justify-between w-full">
-                    <span class="font-medium">Доставка Почтой России</span>
-                    <span>200 ₽</span>
-                  </div>
-                  <p class="text-sm text-gray-500">200 ₽, или бесплатно при заказе от 1500 ₽</p>
+                  <div class="font-bold text-lg">999 ₽</div>
+                  <div class="text-primary text-sm line-through">1 500 ₽</div>
                 </div>
-              </label>
-              
-              <label class="flex items-start">
-                <input type="radio" name="delivery" class="mt-1 mr-2">
-                <div>
-                  <div class="flex justify-between w-full">
-                    <span class="font-medium">Курьерская доставка по Санкт-Петербургу в пределах КАД</span>
-                    <span>550 ₽</span>
-                  </div>
-                  <p class="text-sm text-gray-500">Доставка до квартиры по Санкт-Петербургу (не входит в зону доставки: Ломоносов, Петергоф, Стрельна, Пушкин, Павловск, Кронштадт)</p>
-                </div>
-              </label>
-              
-              <label class="flex items-start">
-                <input type="radio" name="delivery" class="mt-1 mr-2">
-                <div>
-                  <div class="flex justify-between w-full">
-                    <span class="font-medium">Курьерская доставка по Санкт-Петербургу за пределами КАД</span>
-                    <span>750 ₽</span>
-                  </div>
-                  <p class="text-sm text-gray-500">Ленинградская область</p>
-                </div>
-              </label>
-              
-              <label class="flex items-start">
-                <input type="radio" name="delivery" class="mt-1 mr-2">
-                <div>
-                  <div class="flex justify-between w-full">
-                    <span class="font-medium">Доставка (СДЭК)</span>
-                    <span>от 299 ₽</span>
-                  </div>
-                  <p class="text-sm text-gray-500">Быстрая доста</p>
-                </div>
-              </label>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Recommended products -->
-      <section class="mt-10 sm:mt-12">
-        <h2 class="text-xl font-bold mb-6">Добавьте к заказу</h2>
-        
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          <!-- Product card 1 -->
-          <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-            <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-              <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-            </button>
-            <div class="relative">
-              <img src="./assets/card_image (9).png" alt="Подарочная упаковка" class="w-full h-40 object-contain">
+
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-lg p-4 sm:p-6 mb-6">
+          <h2 class="text-xl font-bold mb-4">Ваш заказ</h2>
+
+          <div class="space-y-3 mb-4">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Всего товаров</span>
+              <span id="total-items">0 шт.</span>
             </div>
-            <div class="p-3">
-              <p class="text-xs text-gray-500 mb-1">Подарочная упаковка</p>
-              <div class="flex justify-between items-center mt-2">
-                <span class="font-bold">50 ₽</span>
-                <button class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                  <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                </button>
-              </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Сумма</span>
+              <span id="subtotal">0 ₽</span>
             </div>
-          </div>
-          
-          <!-- Product card 2 -->
-          <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-            <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-              <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-            </button>
-            <div class="relative">
-              <img src="./assets/card_image (10).png" alt="Открытка" class="w-full h-40 object-contain">
+            <div class="flex justify-between">
+              <span class="text-gray-600">Доставка</span>
+              <span id="shipping">200 ₽</span>
             </div>
-            <div class="p-3">
-              <p class="text-xs text-gray-500 mb-1">Открытка</p>
-              <div class="flex justify-between items-center mt-2">
-                <span class="font-bold">70 ₽</span>
-                <button class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                  <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                </button>
-              </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Доп. услуги</span>
+              <span id="additional-services">50 ₽</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-600">Скидка</span>
+              <span id="discount">0 ₽</span>
             </div>
           </div>
-          
-          <!-- Product card 3 -->
-          <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-            <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-              <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-            </button>
-            <div class="relative">
-              <img src="./assets/card_image (11).png" alt="Подарочный сертификат" class="w-full h-40 object-contain">
+
+          <div class="border-t pt-4">
+            <div class="flex justify-between items-center">
+              <span class="font-bold">К оплате</span>
+              <span id="total" class="text-xl font-bold">0 ₽</span>
             </div>
-            <div class="p-3">
-              <p class="text-xs text-gray-500 mb-1">Подарочный сертификат</p>
-              <div class="flex justify-between items-center mt-2">
-                <span class="font-bold">70 ₽</span>
-                <button class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                  <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                </button>
+          </div>
+
+          <div class="mt-6">
+            <div class="mb-4">
+              <label for="promo-input" class="block text-sm font-medium text-gray-700 mb-2">Промокод</label>
+              <div
+                class="flex items-center border rounded-md bg-white overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary transition">
+                <span class="pl-3 text-gray-400 pointer-events-none">
+                  <i data-lucide="badge-percent" class="w-5 h-5"></i>
+                </span>
+                <input id="promo-input" type="text" placeholder="Введите промокод"
+                  class="w-full border-0 bg-transparent focus:ring-0 py-2 pl-2 pr-3 text-sm placeholder-gray-400">
+                <button
+                  class="apply-promo bg-transparent text-primary font-semibold hover:text-red-700 px-4 flex-shrink-0 text-sm py-2">Применить</button>
               </div>
+            </div>
+
+            <button class="w-full bg-primary text-white py-3 rounded-md font-medium hover:bg-red-600 transition mb-3">
+              Оформить заказ
+            </button>
+
+            <button id="clear-cart"
+              class="w-full bg-gray-100 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-200 transition">
+              Очистить корзину
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-4 sm:p-6">
+          <h2 class="text-xl font-bold mb-4">Выберите способ доставки</h2>
+
+          <div class="space-y-4">
+            <label class="flex items-start">
+              <input type="radio" name="delivery" class="mt-1 mr-2">
+              <div>
+                <div class="flex justify-between w-full">
+                  <span class="font-medium">Самовывоз</span>
+                  <span>0 ₽</span>
+                </div>
+                <p class="text-sm text-gray-500">Пункт выдачи работает 22/4, ПНПТ с 10:00 до 19:00</p>
+              </div>
+            </label>
+
+            <label class="flex items-start">
+              <input type="radio" name="delivery" class="mt-1 mr-2" checked>
+              <div>
+                <div class="flex justify-between w-full">
+                  <span class="font-medium">Доставка Почтой России</span>
+                  <span>200 ₽</span>
+                </div>
+                <p class="text-sm text-gray-500">200 ₽, или бесплатно при заказе от 1500 ₽</p>
+              </div>
+            </label>
+
+            <label class="flex items-start">
+              <input type="radio" name="delivery" class="mt-1 mr-2">
+              <div>
+                <div class="flex justify-between w-full">
+                  <span class="font-medium">Курьерская доставка по Санкт-Петербургу в пределах КАД</span>
+                  <span>550 ₽</span>
+                </div>
+                <p class="text-sm text-gray-500">Доставка до квартиры по Санкт-Петербургу (не входит в зону доставки:
+                  Ломоносов, Петергоф, Стрельна, Пушкин, Павловск, Кронштадт)</p>
+              </div>
+            </label>
+
+            <label class="flex items-start">
+              <input type="radio" name="delivery" class="mt-1 mr-2">
+              <div>
+                <div class="flex justify-between w-full">
+                  <span class="font-medium">Курьерская доставка по Санкт-Петербургу за пределами КАД</span>
+                  <span>750 ₽</span>
+                </div>
+                <p class="text-sm text-gray-500">Ленинградская область</p>
+              </div>
+            </label>
+
+            <label class="flex items-start">
+              <input type="radio" name="delivery" class="mt-1 mr-2">
+              <div>
+                <div class="flex justify-between w-full">
+                  <span class="font-medium">Доставка (СДЭК)</span>
+                  <span>от 299 ₽</span>
+                </div>
+                <p class="text-sm text-gray-500">Быстрая доста</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="mt-10 sm:mt-12">
+      <h2 class="text-xl font-bold mb-6">Добавьте к заказу</h2>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
+          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+          </button>
+          <div class="relative">
+            <img src="./assets/card_image (9).png" alt="Подарочная упаковка" class="w-full h-40 object-contain">
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-500 mb-1">Подарочная упаковка</p>
+            <div class="flex justify-between items-center mt-2">
+              <span class="font-bold">50 ₽</span>
+              <button
+                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              </button>
             </div>
           </div>
         </div>
-      </section>
-    </main>
 
-    <div data-include="./components/footer.html"></div>
+        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
+          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+          </button>
+          <div class="relative">
+            <img src="./assets/card_image (10).png" alt="Открытка" class="w-full h-40 object-contain">
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-500 mb-1">Открытка</p>
+            <div class="flex justify-between items-center mt-2">
+              <span class="font-bold">70 ₽</span>
+              <button
+                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        lucide.createIcons();
-        
-        const cartItemsContainer = document.querySelector('#filled-cart .lg\\:col-span-2');
-        const emptyCart = document.getElementById('empty-cart');
-        const filledCart = document.getElementById('filled-cart');
-        
-        // Load cart from localStorage
-        function loadCart() {
-          const cart = JSON.parse(localStorage.getItem('cart')) || [];
-          
-          // Update cart count in header
-          updateCartCount();
-          
-          if (cart.length === 0) {
-            // Show empty cart
-            emptyCart.classList.remove('hidden');
-            filledCart.classList.add('hidden');
-            return;
-          }
-          
-          // Show filled cart
-          emptyCart.classList.add('hidden');
-          filledCart.classList.remove('hidden');
-          
-          // Clear existing items
-          cartItemsContainer.innerHTML = '';
-          
-          // Add items to cart
-          let totalItems = 0;
-          let subtotal = 0;
-          
-          cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-            totalItems += item.quantity;
-            
-            const itemElement = document.createElement('div');
-            itemElement.className = 'bg-white rounded-lg p-4 sm:p-6 relative';
-            itemElement.dataset.id = item.id;
-            
-            itemElement.innerHTML = `
+        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
+          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+          </button>
+          <div class="relative">
+            <img src="./assets/card_image (11).png" alt="Подарочный сертификат" class="w-full h-40 object-contain">
+          </div>
+          <div class="p-3">
+            <p class="text-xs text-gray-500 mb-1">Подарочный сертификат</p>
+            <div class="flex justify-between items-center mt-2">
+              <span class="font-bold">70 ₽</span>
+              <button
+                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-include="./components/footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      lucide.createIcons();
+
+      const cartItemsContainer = document.querySelector('#filled-cart .lg\\:col-span-2');
+      const emptyCart = document.getElementById('empty-cart');
+      const filledCart = document.getElementById('filled-cart');
+
+      // Load cart from localStorage
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Update cart count in header
+        updateCartCount();
+
+        if (cart.length === 0) {
+          // Show empty cart
+          emptyCart.classList.remove('hidden');
+          filledCart.classList.add('hidden');
+          return;
+        }
+
+        // Show filled cart
+        emptyCart.classList.add('hidden');
+        filledCart.classList.remove('hidden');
+
+        // Clear existing items
+        cartItemsContainer.innerHTML = '';
+
+        // Add items to cart
+        let totalItems = 0;
+        let subtotal = 0;
+
+        cart.forEach(item => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+          totalItems += item.quantity;
+
+          const itemElement = document.createElement('div');
+          itemElement.className = 'bg-white rounded-lg p-4 sm:p-6 relative';
+          itemElement.dataset.id = item.id;
+
+          itemElement.innerHTML = `
               <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 remove-item">
                 <i data-lucide="x" class="w-5 h-5"></i>
               </button>
@@ -413,86 +415,61 @@
                 </div>
               </div>
             `;
-            
-            cartItemsContainer.appendChild(itemElement);
+
+          cartItemsContainer.appendChild(itemElement);
+        });
+
+        // Update order summary
+        document.querySelector('#total-items').textContent = `${totalItems} шт.`;
+        document.querySelector('#subtotal').textContent = `${subtotal} ₽`;
+
+        // Calculate total
+        const shipping = parseInt(document.querySelector('#shipping').textContent);
+        const additionalServices = parseInt(document.querySelector('#additional-services').textContent);
+        const discount = parseInt(document.querySelector('#discount').textContent);
+
+        const total = subtotal + shipping + additionalServices - discount;
+        document.querySelector('#total').textContent = `${total} ₽`;
+
+        // Reinitialize Lucide icons
+        lucide.createIcons();
+
+        // Add event listeners for cart items
+        addCartItemEventListeners();
+      }
+
+      function addCartItemEventListeners() {
+        // Remove item buttons
+        document.querySelectorAll('.remove-item').forEach(button => {
+          button.addEventListener('click', function () {
+            const item = this.closest('.bg-white.rounded-lg');
+            const itemId = item.dataset.id;
+
+            // Remove from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(cartItem => cartItem.id !== itemId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Remove from DOM
+            item.remove();
+
+            // Reload cart
+            loadCart();
           });
-          
-          // Update order summary
-          document.querySelector('#total-items').textContent = `${totalItems} шт.`;
-          document.querySelector('#subtotal').textContent = `${subtotal} ₽`;
-          
-          // Calculate total
-          const shipping = parseInt(document.querySelector('#shipping').textContent);
-          const additionalServices = parseInt(document.querySelector('#additional-services').textContent);
-          const discount = parseInt(document.querySelector('#discount').textContent);
-          
-          const total = subtotal + shipping + additionalServices - discount;
-          document.querySelector('#total').textContent = `${total} ₽`;
-          
-          // Reinitialize Lucide icons
-          lucide.createIcons();
-          
-          // Add event listeners for cart items
-          addCartItemEventListeners();
-        }
-        
-        function addCartItemEventListeners() {
-          // Remove item buttons
-          document.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', function() {
-              const item = this.closest('.bg-white.rounded-lg');
-              const itemId = item.dataset.id;
-              
-              // Remove from localStorage
-              let cart = JSON.parse(localStorage.getItem('cart')) || [];
-              cart = cart.filter(cartItem => cartItem.id !== itemId);
-              localStorage.setItem('cart', JSON.stringify(cart));
-              
-              // Remove from DOM
-              item.remove();
-              
-              // Reload cart
-              loadCart();
-            });
-          });
-          
-          // Decrease quantity buttons
-          document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-              const item = this.closest('.bg-white.rounded-lg');
-              const itemId = item.dataset.id;
-              const quantityInput = item.querySelector('.item-quantity');
-              let quantity = parseInt(quantityInput.value);
-              
-              if (quantity > 1) {
-                quantity--;
-                quantityInput.value = quantity;
-                
-                // Update localStorage
-                let cart = JSON.parse(localStorage.getItem('cart')) || [];
-                const cartItem = cart.find(item => item.id === itemId);
-                if (cartItem) {
-                  cartItem.quantity = quantity;
-                  localStorage.setItem('cart', JSON.stringify(cart));
-                }
-                
-                // Reload cart
-                loadCart();
-              }
-            });
-          });
-          
-          // Increase quantity buttons
-          document.querySelectorAll('.increase-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-              const item = this.closest('.bg-white.rounded-lg');
-              const itemId = item.dataset.id;
-              const quantityInput = item.querySelector('.item-quantity');
-              let quantity = parseInt(quantityInput.value);
-              
-              quantity++;
+        });
+
+        // Decrease quantity buttons
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+          button.addEventListener('click', function () {
+            const item = this.closest('.bg-white.rounded-lg');
+            const itemId = item.dataset.id;
+            const quantityInput = item.querySelector('.item-quantity');
+            let quantity = parseInt(quantityInput.value);
+
+            if (quantity > 1) {
+              quantity--;
               quantityInput.value = quantity;
-              
+
               // Update localStorage
               let cart = JSON.parse(localStorage.getItem('cart')) || [];
               const cartItem = cart.find(item => item.id === itemId);
@@ -500,109 +477,135 @@
                 cartItem.quantity = quantity;
                 localStorage.setItem('cart', JSON.stringify(cart));
               }
-              
+
               // Reload cart
               loadCart();
-            });
+            }
           });
-        }
-        
-        // Update cart count function
-        function updateCartCount() {
-          const cart = JSON.parse(localStorage.getItem('cart')) || [];
-          const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-          
-          const cartCountElements = document.querySelectorAll('.cart-count');
-          cartCountElements.forEach(element => {
-            element.textContent = cartCount;
-            element.classList.toggle('hidden', cartCount === 0);
-          });
-        }
-        
-        // Apply promo code
-        document.querySelector('.apply-promo').addEventListener('click', function() {
-          const promoInput = document.querySelector('#promo-input');
-          const promoCode = promoInput.value.trim();
-          
-          if (promoCode) {
-            // In a real app, you would validate the promo code with the server
-            // For this demo, we'll just apply a fixed discount
-            document.querySelector('#discount').textContent = '500 ₽';
-            
-            // Reload cart to update totals
-            loadCart();
-            
-            // Show notification
-            showNotification('Промокод применен!');
-          }
         });
-        
-        // Show notification function
-        function showNotification(message) {
-          // Create notification element
-          const notification = document.createElement('div');
-          notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300';
-          notification.textContent = message;
-          
-          document.body.appendChild(notification);
-          
-          // Show notification
-          setTimeout(() => {
-            notification.classList.remove('translate-y-10', 'opacity-0');
-          }, 100);
-          
-          // Hide and remove notification
-          setTimeout(() => {
-            notification.classList.add('translate-y-10', 'opacity-0');
-            setTimeout(() => {
-              document.body.removeChild(notification);
-            }, 300);
-          }, 3000);
-        }
-        
-        // Clear cart button
-        document.querySelector('#clear-cart').addEventListener('click', function() {
-          localStorage.removeItem('cart');
-          loadCart();
-          showNotification('Корзина очищена');
-        });
-        
-        // Load cart on page load
-        loadCart();
-        
-        // Add recommended products to cart
-        document.querySelectorAll('.add-recommended').forEach(button => {
-          button.addEventListener('click', function() {
-            const card = this.closest('.bg-white');
-            const name = card.querySelector('p').textContent;
-            const price = parseInt(card.querySelector('.font-bold').textContent);
-            const img = card.querySelector('img').src;
-            const id = `rec-${Date.now()}`;
-            
-            // Get cart from localStorage
+
+        // Increase quantity buttons
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+          button.addEventListener('click', function () {
+            const item = this.closest('.bg-white.rounded-lg');
+            const itemId = item.dataset.id;
+            const quantityInput = item.querySelector('.item-quantity');
+            let quantity = parseInt(quantityInput.value);
+
+            quantity++;
+            quantityInput.value = quantity;
+
+            // Update localStorage
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            
-            // Add item to cart
-            cart.push({
-              id,
-              name,
-              price,
-              img,
-              category: 'Дополнительно',
-              quantity: 1
-            });
-            
-            // Save cart to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-            
+            const cartItem = cart.find(item => item.id === itemId);
+            if (cartItem) {
+              cartItem.quantity = quantity;
+              localStorage.setItem('cart', JSON.stringify(cart));
+            }
+
             // Reload cart
             loadCart();
-            
-            // Show notification
-            showNotification(`${name} добавлен в корзину`);
           });
         });
+      }
+
+      // Update cart count function
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+        const cartCountElements = document.querySelectorAll('.cart-count');
+        cartCountElements.forEach(element => {
+          element.textContent = cartCount;
+          element.classList.toggle('hidden', cartCount === 0);
+        });
+      }
+
+      // Apply promo code
+      document.querySelector('.apply-promo').addEventListener('click', function () {
+        const promoInput = document.querySelector('#promo-input');
+        const promoCode = promoInput.value.trim();
+
+        if (promoCode) {
+          // In a real app, you would validate the promo code with the server
+          // For this demo, we'll just apply a fixed discount
+          document.querySelector('#discount').textContent = '500 ₽';
+
+          // Reload cart to update totals
+          loadCart();
+
+          // Show notification
+          showNotification('Промокод применен!');
+        }
       });
-    </script>
-  </body>
-</html> 
+
+      // Show notification function
+      function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300';
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Show notification
+        setTimeout(() => {
+          notification.classList.remove('translate-y-10', 'opacity-0');
+        }, 100);
+
+        // Hide and remove notification
+        setTimeout(() => {
+          notification.classList.add('translate-y-10', 'opacity-0');
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+
+      // Clear cart button
+      document.querySelector('#clear-cart').addEventListener('click', function () {
+        localStorage.removeItem('cart');
+        loadCart();
+        showNotification('Корзина очищена');
+      });
+
+      // Load cart on page load
+      loadCart();
+
+      // Add recommended products to cart
+      document.querySelectorAll('.add-recommended').forEach(button => {
+        button.addEventListener('click', function () {
+          const card = this.closest('.bg-white');
+          const name = card.querySelector('p').textContent;
+          const price = parseInt(card.querySelector('.font-bold').textContent);
+          const img = card.querySelector('img').src;
+          const id = `rec-${Date.now()}`;
+
+          // Get cart from localStorage
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+          // Add item to cart
+          cart.push({
+            id,
+            name,
+            price,
+            img,
+            category: 'Дополнительно',
+            quantity: 1
+          });
+
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+
+          // Reload cart
+          loadCart();
+
+          // Show notification
+          showNotification(`${name} добавлен в корзину`);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
