@@ -8,6 +8,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="./js/utils.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <link rel="icon" href="./assets/Logo.svg" type="image/svg+xml" />
   <script>
     tailwind.config = {
       theme: {
@@ -37,6 +38,51 @@
         height: 80px;
       }
     }
+
+    /* Рекомендации под товарами */
+    .rec-card {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .rec-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+    }
+
+    .rec-img {
+      height: 170px;
+      object-fit: contain;
+      width: 100%;
+    }
+
+    @media (max-width: 640px) {
+      .rec-img {
+        height: 130px;
+      }
+    }
+
+    .rec-footer {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .rec-price {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .rec-add {
+      width: 35px;
+      height: 35px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 
@@ -60,99 +106,69 @@
     </div>
 
     <div id="filled-cart" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div class="lg:col-span-2 space-y-4">
-        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <div class="w-full sm:w-24 h-24 flex-shrink-0">
-              <img src="./assets/card_image.png" alt="Эмоциональные белки" class="w-full h-full object-contain">
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-medium mb-1">Эмоциональные белки - Животные максимум в 3 строки затем обрезается название
-                вот так как сейчас</h3>
-              <div class="flex flex-wrap gap-2 mb-2">
-                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
-                <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
-              </div>
-              <div class="flex justify-between items-center mt-2">
-                <div class="flex items-center">
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="minus" class="w-4 h-4"></i>
-                  </button>
-                  <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                  </button>
-                </div>
-                <div class="font-bold text-lg">300 ₽</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="lg:col-span-2">
+        <!-- Контейнер для динамического списка товаров -->
+        <div id="cart-items" class="space-y-4"></div>
 
-        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <div class="w-full sm:w-24 h-24 flex-shrink-0">
-              <img src="./assets/card_image (9).png" alt="Наклейки Писос" class="w-full h-full object-contain">
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-medium mb-1">Наклейки "Писос" - Животные</h3>
-              <div class="flex flex-wrap gap-2 mb-2">
-                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикерпак</span>
-                <span class="bg-gray-100 text-xs px-2 py-1 rounded">A4</span>
+        <!-- Добавьте к заказу (в левой колонке, аккуратно под товарами) -->
+        <section class="mt-6 sm:mt-8">
+          <h2 class="text-xl font-bold mb-4 sm:mb-6">Добавьте к заказу</h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div class="rec-card bg-white rounded-lg overflow-hidden shadow-sm relative">
+              <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+                <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+              </button>
+              <div class="relative">
+                <img src="./assets/card_image (9).png" alt="Подарочная упаковка" class="rec-img">
               </div>
-              <div class="flex justify-between items-center mt-2">
-                <div class="flex items-center">
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="minus" class="w-4 h-4"></i>
-                  </button>
-                  <input type="text" value="3" class="w-10 text-center mx-2 bg-transparent" readonly>
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
+              <div class="p-3">
+                <p class="text-xs text-gray-500 mb-1">Подарочная упаковка</p>
+                <div class="rec-footer">
+                  <span class="rec-price">50 ₽</span>
+                  <button class="add-to-cart rec-add">
+                    <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-[35px] h-[35px]">
                   </button>
                 </div>
-                <div class="font-bold text-lg">900 ₽</div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="bg-white rounded-lg p-4 sm:p-6 relative">
-          <button class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <div class="w-full sm:w-24 h-24 flex-shrink-0">
-              <img src="./assets/card_image (7).png" alt="Книга с наклейками" class="w-full h-full object-contain">
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-medium mb-1">Книга с наклейками "Липкие буквы" - Стикербук</h3>
-              <div class="flex flex-wrap gap-2 mb-2">
-                <span class="bg-gray-100 text-xs px-2 py-1 rounded">Стикербук</span>
+            <div class="rec-card bg-white rounded-lg overflow-hidden shadow-sm relative">
+              <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+                <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+              </button>
+              <div class="relative">
+                <img src="./assets/card_image (10).png" alt="Открытка" class="rec-img">
               </div>
-              <div class="flex justify-between items-center mt-2">
-                <div class="flex items-center">
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="minus" class="w-4 h-4"></i>
-                  </button>
-                  <input type="text" value="1" class="w-10 text-center mx-2 bg-transparent" readonly>
-                  <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
+              <div class="p-3">
+                <p class="text-xs text-gray-500 mb-1">Открытка</p>
+                <div class="rec-footer">
+                  <span class="rec-price">70 ₽</span>
+                  <button class="add-to-cart rec-add">
+                    <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-[35px] h-[35px]">
                   </button>
                 </div>
-                <div>
-                  <div class="font-bold text-lg">999 ₽</div>
-                  <div class="text-primary text-sm line-through">1 500 ₽</div>
+              </div>
+            </div>
+
+            <div class="rec-card bg-white rounded-lg overflow-hidden shadow-sm relative">
+              <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
+                <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
+              </button>
+              <div class="relative">
+                <img src="./assets/card_image (11).png" alt="Подарочный сертификат" class="rec-img">
+              </div>
+              <div class="p-3">
+                <p class="text-xs text-gray-500 mb-1">Подарочный сертификат</p>
+                <div class="rec-footer">
+                  <span class="rec-price">70 ₽</span>
+                  <button class="add-to-cart rec-add">
+                    <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-[35px] h-[35px]">
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
 
       <div class="lg:col-span-1">
@@ -278,69 +294,6 @@
         </div>
       </div>
     </div>
-
-    <section class="mt-10 sm:mt-12">
-      <h2 class="text-xl font-bold mb-6">Добавьте к заказу</h2>
-
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="relative">
-            <img src="./assets/card_image (9).png" alt="Подарочная упаковка" class="w-full h-40 object-contain">
-          </div>
-          <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1">Подарочная упаковка</p>
-            <div class="flex justify-between items-center mt-2">
-              <span class="font-bold">50 ₽</span>
-              <button
-                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="relative">
-            <img src="./assets/card_image (10).png" alt="Открытка" class="w-full h-40 object-contain">
-          </div>
-          <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1">Открытка</p>
-            <div class="flex justify-between items-center mt-2">
-              <span class="font-bold">70 ₽</span>
-              <button
-                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg overflow-hidden shadow-sm relative">
-          <button class="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm">
-            <i data-lucide="heart" class="w-4 h-4 text-gray-400"></i>
-          </button>
-          <div class="relative">
-            <img src="./assets/card_image (11).png" alt="Подарочный сертификат" class="w-full h-40 object-contain">
-          </div>
-          <div class="p-3">
-            <p class="text-xs text-gray-500 mb-1">Подарочный сертификат</p>
-            <div class="flex justify-between items-center mt-2">
-              <span class="font-bold">70 ₽</span>
-              <button
-                class="add-recommended bg-gray-100 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200">
-                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <div data-include="./components/footer.html"></div>
@@ -349,7 +302,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       lucide.createIcons();
 
-      const cartItemsContainer = document.querySelector('#filled-cart .lg\\:col-span-2');
+      const cartItemsContainer = document.querySelector('#cart-items');
       const emptyCart = document.getElementById('empty-cart');
       const filledCart = document.getElementById('filled-cart');
 
@@ -371,7 +324,7 @@
         emptyCart.classList.add('hidden');
         filledCart.classList.remove('hidden');
 
-        // Clear existing items
+        // Clear existing items (только список товаров, не трогаем рекомендации)
         cartItemsContainer.innerHTML = '';
 
         // Add items to cart

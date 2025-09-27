@@ -4,20 +4,20 @@
  */
 async function includeHTML() {
   const includes = document.querySelectorAll('[data-include]');
-  
+
   for (const element of includes) {
     try {
       const filePath = element.getAttribute('data-include');
       const response = await fetch(filePath);
-      
+
       if (!response.ok) {
         console.error(`Ошибка загрузки компонента: ${filePath}`);
         continue;
       }
-      
+
       const content = await response.text();
       element.innerHTML = content;
-      
+
       // Запускаем скрипты, если они есть в компоненте
       const scripts = element.querySelectorAll('script');
       scripts.forEach(script => {
@@ -33,12 +33,14 @@ async function includeHTML() {
     }
   }
 
-  // После загрузки компонентов запускаем настройку мобильных функций
+  // После загрузки компонентов запускаем настройку мобильных функций и анимации корзины
   setupMobileFeatures();
+  setupCartFlyAnimation();
+  setupCartAddHandlers();
 }
 
 // Запускаем после полной загрузки страницы
-document.addEventListener('DOMContentLoaded', includeHTML); 
+document.addEventListener('DOMContentLoaded', includeHTML);
 
 /**
  * Настройка функциональности для мобильных устройств
@@ -48,12 +50,12 @@ function setupMobileFeatures() {
   const handleMobileCardLayout = () => {
     const isMobile = window.innerWidth < 640;
     const cardGrids = document.querySelectorAll('.card-grid-mobile');
-    
+
     cardGrids.forEach(grid => {
       if (isMobile) {
         // На мобильных устройствах настраиваем особый макет
         const cards = Array.from(grid.children);
-        
+
         // Группируем карточки попарно для мобильного отображения
         for (let i = 0; i < cards.length; i += 2) {
           const pair = cards.slice(i, i + 2);
@@ -71,15 +73,15 @@ function setupMobileFeatures() {
       }
     });
   };
-  
+
   // Настройка плавной прокрутки для всех якорных ссылок
   const setupSmoothScrolling = () => {
     document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
           window.scrollTo({
             top: targetElement.offsetTop - 80, // Учитываем фиксированный заголовок
@@ -89,7 +91,7 @@ function setupMobileFeatures() {
       });
     });
   };
-  
+
   // Ленивая загрузка изображений
   const setupLazyLoading = () => {
     if ('IntersectionObserver' in window) {
@@ -105,7 +107,7 @@ function setupMobileFeatures() {
           }
         });
       });
-      
+
       document.querySelectorAll('img[data-src]').forEach(img => {
         lazyImageObserver.observe(img);
       });
@@ -135,7 +137,7 @@ function setupMobileFeatures() {
       });
     }
   };
-  
+
   // Находим все кнопки, содержащие SVG корзины
   document.querySelectorAll('button').forEach(btn => {
     const img = btn.querySelector('img[src$="button_add.svg"]');
@@ -148,13 +150,13 @@ function setupMobileFeatures() {
       });
     }
   });
-  
+
   // Инициализация всех мобильных функций
   handleMobileCardLayout();
   setupSmoothScrolling();
   setupLazyLoading();
   setupMobileNavigation();
-  
+
   // Обновление макета при изменении размера окна
   window.addEventListener('resize', () => {
     handleMobileCardLayout();
@@ -175,4 +177,134 @@ function setupMobileFeatures() {
     document.querySelectorAll('.promo-prev').forEach(btn => btn.addEventListener('click', () => showSlide(idx - 1)));
     document.querySelectorAll('.promo-next').forEach(btn => btn.addEventListener('click', () => showSlide(idx + 1)));
   }
-} 
+}
+
+/** Добавление товара в корзину с автосбором данных с карточки */
+function setupCartAddHandlers() {
+  if (window.__cartAddBound) return;
+  window.__cartAddBound = true;
+
+  const textToNumber = (t) => {
+    if (!t) return 0;
+    return parseInt(String(t).replace(/[^0-9]/g, '')) || 0;
+  };
+
+  const updateCartCountSoft = () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((s, i) => s + (i.quantity || 1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.textContent = count;
+      el.classList.toggle('hidden', count === 0);
+    });
+  };
+
+  const notify = (msg) => {
+    try {
+      const n = document.createElement('div');
+      n.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg z-50 transform translate-y-10 opacity-0 transition-all duration-300';
+      n.textContent = msg;
+      document.body.appendChild(n);
+      setTimeout(() => n.classList.remove('translate-y-10', 'opacity-0'), 50);
+      setTimeout(() => { n.classList.add('translate-y-10', 'opacity-0'); setTimeout(() => n.remove(), 300); }, 2500);
+    } catch (_) { }
+  };
+
+  const extractFromCard = (btn) => {
+    const card = btn.closest('.product-card, .sticker-card, .stickerpack-card, .artist-card');
+    if (!card) return null;
+    const img = card.querySelector('img');
+    const imgSrc = img ? img.src : '';
+    let name = '';
+    const titleP = card.querySelector('.p-3 p.text-gray-700, .p-4 p.text-gray-700');
+    const anyP = card.querySelector('.p-3 p:last-of-type, .p-4 p:last-of-type');
+    const h3 = card.querySelector('h3');
+    name = (titleP && titleP.textContent.trim()) || (h3 && h3.textContent.trim()) || (anyP && anyP.textContent.trim()) || 'Товар';
+    let priceText = '';
+    const priceEl = card.querySelector('.p-3 .font-bold, .p-4 .font-bold');
+    priceText = priceEl ? priceEl.textContent : '';
+    const price = textToNumber(priceText);
+    const category = card.classList.contains('artist-card') ? 'Стикеры' : card.classList.contains('stickerpack-card') ? 'Стикерпак' : card.classList.contains('product-card') ? 'Товар' : 'Товар';
+    const id = (name + '|' + imgSrc).replace(/\W+/g, '-').toLowerCase() + '-' + Date.now();
+    return { id, name, price, img: imgSrc, category, quantity: 1 };
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.add-to-cart');
+    const imgBtn = e.target.closest('button')?.querySelector('img[alt="Добавить в корзину"]');
+    const srcBtn = btn || (imgBtn ? e.target.closest('button') : null);
+    if (!srcBtn) return;
+
+    // Если у .add-to-cart есть data-атрибуты, пусть работает существующая логика страницы
+    if (btn && btn.dataset && btn.dataset.id) return;
+
+    const data = extractFromCard(srcBtn);
+    if (!data || !data.price) return;
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(data);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCountSoft();
+    notify(`${data.name} добавлен в корзину`);
+  }, true);
+}
+/**
+ * Красивая анимация «полет в корзину» для всех кнопок добавления
+ * Работает для .add-to-cart и для кнопок с картинкой alt="Добавить в корзину"
+ */
+function setupCartFlyAnimation() {
+  if (window.__cartFlyBound) return; // предотвращаем дубль
+  window.__cartFlyBound = true;
+
+  const getCartTarget = () => {
+    const candidates = Array.from(document.querySelectorAll('header a[href$="cart.html"]'));
+    return candidates.find(el => el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0) || candidates[0];
+  };
+
+  const animateToCart = (sourceEl) => {
+    const cartEl = getCartTarget();
+    if (!sourceEl || !cartEl) return;
+
+    const srcRect = sourceEl.getBoundingClientRect();
+    const trgRect = (cartEl.querySelector('svg') || cartEl).getBoundingClientRect();
+
+    const flyer = document.createElement('img');
+    flyer.src = sourceEl.tagName === 'IMG' && sourceEl.src ? sourceEl.src : './assets/button_add.svg';
+    flyer.style.position = 'fixed';
+    flyer.style.left = `${srcRect.left + srcRect.width / 2}px`;
+    flyer.style.top = `${srcRect.top + srcRect.height / 2}px`;
+    flyer.style.width = '35px';
+    flyer.style.height = '35px';
+    flyer.style.transform = 'translate(-50%, -50%) scale(1)';
+    flyer.style.transition = 'transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 600ms ease';
+    flyer.style.zIndex = '9999';
+    flyer.style.pointerEvents = 'none';
+    flyer.style.filter = 'drop-shadow(0 6px 14px rgba(0,0,0,.15))';
+    document.body.appendChild(flyer);
+
+    requestAnimationFrame(() => {
+      const targetX = trgRect.left + trgRect.width / 2;
+      const targetY = trgRect.top + trgRect.height / 2;
+      flyer.style.transform = `translate(${targetX - (srcRect.left + srcRect.width / 2)}px, ${targetY - (srcRect.top + srcRect.height / 2)}px) scale(0.25)`;
+      flyer.style.opacity = '0.6';
+    });
+
+    flyer.addEventListener('transitionend', () => {
+      flyer.remove();
+      try {
+        (cartEl.querySelector('svg') || cartEl).animate([
+          { transform: 'scale(1)' },
+          { transform: 'scale(1.15)' },
+          { transform: 'scale(1)' }
+        ], { duration: 300, easing: 'ease-out' });
+      } catch (_) { /* no-op */ }
+    }, { once: true });
+  };
+
+  document.addEventListener('click', (e) => {
+    const addBtn = e.target.closest('.add-to-cart');
+    const imgBtn = e.target.closest('button')?.querySelector('img[alt="Добавить в корзину"]');
+    const source = (e.target.closest('button')?.querySelector('img[alt="Добавить в корзину"]')) || addBtn;
+    if (!addBtn && !imgBtn) return;
+    animateToCart(imgBtn || addBtn);
+  }, true);
+}
