@@ -18,6 +18,21 @@ async function includeHTML() {
       const content = await response.text();
       element.innerHTML = content;
 
+      // Нормализация путей для включённых компонентов (assets и index)
+      try {
+        const isInPages = /\/pages\//.test(window.location.pathname.replace(/\\/g, '/'));
+        const assetsPrefix = isInPages ? '../assets/' : './assets/';
+        const indexHref = isInPages ? '../index.html' : './index.html';
+
+        element.querySelectorAll('img[src^="./assets/"]').forEach(img => {
+          const rest = img.getAttribute('src').slice('./assets/'.length);
+          img.setAttribute('src', assetsPrefix + rest);
+        });
+        element.querySelectorAll('a[href="./index.html"]').forEach(a => {
+          a.setAttribute('href', indexHref);
+        });
+      } catch (_) { }
+
       // Запускаем скрипты, если они есть в компоненте
       const scripts = element.querySelectorAll('script');
       scripts.forEach(script => {
@@ -37,6 +52,7 @@ async function includeHTML() {
   setupMobileFeatures();
   setupCartFlyAnimation();
   setupCartAddHandlers();
+  setupProductNavigation();
 }
 
 // Запускаем после полной загрузки страницы
@@ -179,6 +195,39 @@ function setupMobileFeatures() {
   }
 }
 
+/** Навигация: клик по карточке → открытие product.html с данными из карточки */
+function setupProductNavigation() {
+  if (window.__productNavBound) return;
+  window.__productNavBound = true;
+
+  const computeProductPath = () => {
+    const p = window.location.pathname.replace(/\\/g, '/');
+    return p.includes('/parazita-template-clean/') ? '../pages/product.html' : './pages/product.html';
+  };
+
+  const extractText = (el) => (el ? (el.textContent || '').trim() : 'Товар');
+
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.product-card, .artist-card, .stickerpack-card');
+    if (!card) return;
+    if (e.target.closest('button, .add-to-cart, a[href]')) return; // не перехватываем кнопки/ссылки
+
+    e.preventDefault();
+    const imgEl = card.querySelector('img');
+    let img = imgEl ? imgEl.getAttribute('src') || '' : '';
+    img = img.replace(/^\.\//, '').replace(/^\//, ''); // нормализуем
+
+    const titleEl = card.querySelector('p.text-gray-700, h3, p');
+    const title = extractText(titleEl);
+
+    const priceEl = card.querySelector('.font-bold');
+    const price = priceEl ? (priceEl.textContent || '').replace(/[^0-9]/g, '') : '0';
+
+    const params = new URLSearchParams({ title, img: img.startsWith('assets/') ? img : `assets/${img.split('/').pop()}`, price });
+    const url = `${computeProductPath()}?${params.toString()}`;
+    window.location.href = url;
+  }, true);
+}
 /** Добавление товара в корзину с автосбором данных с карточки */
 function setupCartAddHandlers() {
   if (window.__cartAddBound) return;

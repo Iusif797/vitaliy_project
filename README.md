@@ -1,103 +1,87 @@
 # Parazita Kusok Website
 
-Интернет-магазин стикеров, стикерпаков, стикербуков и других товаров с авторскими принтами.
+A premium e-commerce platform for exclusive stickers, sticker packs, sticker books, and original print merchandise.
 
-## Responsive Design Implementation
+## Responsive Design Excellence
 
-Сайт полностью адаптирован для всех типов устройств:
+The website delivers a flawless, device-agnostic experience:
 
-- **Мобильные устройства** (до 640px)
-- **Планшеты** (641px - 1024px)
-- **Десктоп** (1025px и выше)
+- **Mobile** (up to 640px)
+- **Tablet** (641px – 1024px)
+- **Desktop** (1025px and above)
 
-### Ключевые особенности мобильной версии
+### Mobile-First Highlights
 
-1. **Оптимизированная навигация**:
-   - Компактное мобильное меню с удобной сеткой категорий
-   - Скрываемая поисковая строка для экономии места
-   - Горизонтально прокручиваемое меню категорий на планшетах
+1. **Intuitive Navigation**  
+   - Sleek, collapsible mobile menu with a modern category grid  
+   - Space-saving, toggleable search bar  
+   - Smooth horizontal category scrolling on tablets  
 
-2. **Адаптивная сетка карточек**:
-   - Двухколоночная сетка на мобильных устройствах
-   - Трехколоночная сетка на планшетах
-   - Пятиколоночная сетка на десктопе
+2. **Adaptive Card Grid**  
+   - Two-column layout on mobile  
+   - Three columns on tablets  
+   - Five columns on desktop for maximum product visibility  
 
-3. **Оптимизированный контент**:
-   - Уменьшенные размеры шрифтов для мобильных устройств
-   - Компактные отступы и поля на маленьких экранах
-   - Оптимизированный размер кнопок для удобного тапа (минимум 44×44px)
+3. **Content Optimization**  
+   - Responsive, legible typography for every device  
+   - Smart spacing and padding for compact screens  
+   - Touch-friendly buttons (minimum 44×44px) for effortless interaction  
 
-4. **Производительность**:
-   - Ленивая загрузка изображений
-   - Оптимизация для быстрой загрузки на мобильных устройствах
+4. **Performance**  
+   - Lazy image loading for instant page speed  
+   - Mobile-first optimizations for lightning-fast browsing  
 
-## Тестирование мобильной версии
+## Mobile Testing Guide
 
-### Для локального тестирования:
+### Local Testing Steps
 
-1. Запустите локальный сервер:
+1. Launch a local server:
    ```bash
    python -m http.server 8000
    ```
-   или
+   or
    ```bash
    npm run start
    ```
 
-2. Откройте в браузере адрес:
+2. Open in your browser:
    ```
    http://localhost:8000
    ```
 
-3. Используйте инструменты разработчика (F12) для эмуляции мобильных устройств:
+3. Use browser dev tools to emulate devices:
    - Chrome DevTools > Toggle Device Toolbar
    - Firefox > Responsive Design Mode
 
-### Поддерживаемые мобильные устройства:
+### Supported Devices
 
 - iPhone SE / 5 / 5S (320px)
-- iPhone 6-8 (375px)
+- iPhone 6–8 (375px)
 - iPhone X/11/12/13/14 (390px)
 - iPhone Plus/Max/Pro Max (428px)
 - Google Pixel (393px)
-- Samsung Galaxy S/A серии (360-412px)
-- iPad Mini/Air/Pro (768-1024px)
+- Samsung Galaxy S/A Series (360–412px)
+- iPad Mini/Air/Pro (768–1024px)
 
-## Развертывание
+## Deployment
 
-Сайт размещен на Vercel по адресу:
+Live on Vercel:  
 [https://parazita-template-clean-2qm8kha7p-yosefs-projects-05866a03.vercel.app/](https://parazita-template-clean-2qm8kha7p-yosefs-projects-05866a03.vercel.app/)
 
-## Структура проекта
+## Project Structure
 
-- `/assets` - все изображения и медиафайлы
-- `/components` - переиспользуемые HTML компоненты (header, footer)
-- `/js` - JavaScript файлы 
-- `index.html` - главная страница сайта
+- `/assets` — all images and media
+- `/components` — reusable HTML components (header, footer, etc.)
+- `/js` — JavaScript files
+- `index.html` — main landing page
 
-## Особенности
+## Key Features
 
-- Адаптивный дизайн с поддержкой мобильных устройств
-- Компонентная архитектура для переиспользования блоков
-- Использование Tailwind CSS для стилизации
-- Динамическая загрузка компонентов с помощью JavaScript
+- Fully responsive, mobile-optimized design
+- Modular component architecture for scalability
+- Tailwind CSS for cutting-edge styling
+- Dynamic component loading via JavaScript
 
-## Запуск проекта
+## Getting Started
 
-Для запуска проекта можно использовать любой локальный веб-сервер. Например, с помощью Python:
-
-```bash
-python -m http.server
-```
-
-Затем откройте браузер и перейдите по адресу: `http://localhost:8000/`
-
-## Компоненты
-
-Проект использует систему компонентов, которые подключаются к страницам через `data-include` атрибут:
-
-```html
-<div data-include="./components/header.html"></div>
-```
-
-JavaScript функция `includeHTML()` загружает эти компоненты при загрузке страницы. 
+You can use any local web server. For example, with Python:

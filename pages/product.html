@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Страница товара</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/utils.js" defer></script>
+    <style>
+        .thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb.active {
+            outline: 2px solid #FF4A4A;
+        }
+
+        .option {
+            border: 1px solid #E5E7EB;
+            border-radius: 9999px;
+            padding: 6px 10px;
+            font-size: 12px;
+        }
+
+        .option.active {
+            background: #111827;
+            color: #fff;
+            border-color: #111827;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #9CA3AF;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            background: #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F3F5F9] text-gray-900">
+    <div data-include="../components/header.html"></div>
+    <div class="h-[80px] sm:h-[100px] md:h-[120px]"></div>
+
+    <main class="max-w-7xl mx-auto px-3 sm:px-4 pb-10">
+        <nav class="text-sm text-gray-500 mb-4">
+            <a href="../index.html" class="hover:underline">Главная</a>
+            <span class="mx-1">/</span>
+            <a href="#" class="hover:underline">Каталог</a>
+            <span class="mx-1">/</span>
+            <a href="#" class="hover:underline">Стикербуки</a>
+        </nav>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Gallery -->
+            <section>
+                <div class="bg-white rounded-xl p-3 md:p-4 shadow-sm">
+                    <div class="flex gap-3">
+                        <div class="hidden sm:flex sm:flex-col gap-2">
+                            <div class="thumb active"><img id="t1" src="../assets/card_image (11).png" alt="thumb" />
+                            </div>
+                            <div class="thumb"><img id="t2" src="../assets/card_image (10).png" alt="thumb" /></div>
+                            <div class="thumb"><img id="t3" src="../assets/card_image (9).png" alt="thumb" /></div>
+                        </div>
+                        <div class="flex-1">
+                            <img id="mainImage" src="../assets/card_image (11).png" class="w-full rounded-lg"
+                                alt="product" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Details -->
+            <section>
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <h1 id="pTitle" class="text-2xl font-bold mb-2">Стикер</h1>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="text-yellow-400">★★★★★</div>
+                        <span class="text-sm text-gray-500">4.1 (18 отзывов)</span>
+                    </div>
+                    <div class="flex items-baseline gap-3 mb-4">
+                        <div id="pPrice" class="text-2xl font-extrabold">0 ₽</div>
+                        <div id="pOld" class="price-old hidden">0 ₽</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="text-sm text-gray-500 mb-2">Ламинация</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option active cursor-pointer" data-group="lamination">Матовая</button>
+                            <button class="option cursor-pointer" data-group="lamination">Глянцевая</button>
+                            <button class="option cursor-pointer" data-group="lamination">Голографика</button>
+                            <button class="option cursor-pointer" data-group="lamination">Прозрачная</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="text-sm text-gray-500 mb-2">Размер</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="option active cursor-pointer" data-group="size">Маленький 7x7см</button>
+                            <button class="option cursor-pointer" data-group="size">Средний 10x10см</button>
+                            <button class="option cursor-pointer" data-group="size">Большой 12x12см</button>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="text-sm text-gray-500 mb-2">Укажите количество:</div>
+                        <div class="inline-flex items-center gap-2">
+                            <button id="qtyMinus" class="qty-btn">-</button>
+                            <input id="qty" type="text" value="1" class="w-10 text-center bg-transparent" readonly />
+                            <button id="qtyPlus" class="qty-btn">+</button>
+                        </div>
+                    </div>
+
+                    <button id="addToCart"
+                        class="w-full sm:w-auto bg-[#FF4A4A] hover:bg-red-600 text-white px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Добавить в корзину
+                    </button>
+
+                    <div class="mt-6">
+                        <h2 class="font-semibold mb-2">Описание товара</h2>
+                        <p id="pDesc" class="text-sm text-gray-700">Давно выяснено, что при оценке дизайна и композиции
+                            читабельный текст
+                            мешает сосредоточиться. Lorem Ipsum используется потому, что тот обеспечивает более или
+                            менее стандартное заполнение.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const q = new URLSearchParams(location.search);
+            const title = q.get('title');
+            const img = q.get('img');
+            const price = q.get('price');
+            if (title) document.getElementById('pTitle').textContent = title;
+            if (img) {
+                const resolved = img.startsWith('../') || img.startsWith('./') ? img : `../${img}`;
+                document.getElementById('mainImage').src = resolved;
+                const t1 = document.getElementById('t1'); if (t1) t1.src = resolved;
+            }
+            if (price) document.getElementById('pPrice').textContent = `${parseInt(price)} ₽`;
+
+            document.querySelectorAll('.option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const grp = btn.dataset.group;
+                    if (grp) document.querySelectorAll(`.option[data-group="${grp}"]`).forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+            // галерея
+            document.querySelectorAll('.thumb img').forEach(t => t.addEventListener('click', () => {
+                document.getElementById('mainImage').src = t.src;
+                document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+                t.parentElement.classList.add('active');
+            }));
+
+            const qty = document.getElementById('qty');
+            document.getElementById('qtyMinus').addEventListener('click', () => {
+                const v = Math.max(1, parseInt(qty.value) - 1); qty.value = v;
+            });
+            document.getElementById('qtyPlus').addEventListener('click', () => {
+                const v = parseInt(qty.value) + 1; qty.value = v;
+            });
+
+            document.getElementById('addToCart').addEventListener('click', () => {
+                const name = document.getElementById('pTitle').textContent.trim();
+                const price = parseInt(document.getElementById('pPrice').textContent.replace(/[^0-9]/g, ''));
+                const img = document.getElementById('mainImage').src;
+                const count = parseInt(document.getElementById('qty').value) || 1;
+                const id = `product-${Date.now()}`;
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ id, name, price, img, category: 'Товар', quantity: count });
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                const total = cart.reduce((s, i) => s + i.quantity, 0);
+                document.querySelectorAll('.cart-count').forEach(el => { el.textContent = total; el.classList.toggle('hidden', total === 0); });
+            });
+        });
+    </script>
+</body>
+
+</html>
