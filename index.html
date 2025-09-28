@@ -285,6 +285,88 @@
     }
 
     /* Навигационные стрелки для баннера */
+    .banner-hero {
+      perspective: 800px;
+    }
+
+    .banner-slider {
+      position: relative;
+      height: 12rem;
+      transition: transform 300ms ease;
+    }
+
+    .banner-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity .7s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .banner-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      z-index: 2;
+    }
+
+    .banner-slide img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+    }
+
+    @media (min-width: 640px) {
+      .banner-slide img {
+        height: 16rem;
+      }
+
+      .banner-slider {
+        height: 16rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .banner-slide img {
+        height: 20rem;
+      }
+
+      .banner-slider {
+        height: 20rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .banner-slide img {
+        height: 24rem;
+      }
+
+      .banner-slider {
+        height: 24rem;
+      }
+    }
+
+    .banner-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 120% at 50% 0%, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 40%), linear-gradient(180deg, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, .15) 100%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes kenburns {
+      from {
+        transform: scale(1) translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: scale(1.08) translate3d(0, -8px, 0);
+      }
+    }
+
+    .banner-slide.active img {
+      animation: kenburns 6000ms ease-out forwards;
+    }
+
     .banner-nav {
       position: absolute;
       top: 50%;
@@ -329,12 +411,13 @@
 
 
   <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
-    <div class="relative overflow-hidden rounded-lg shadow-lg">
+    <div class="relative overflow-hidden rounded-lg shadow-lg banner-hero">
       <div class="banner-slider relative">
-        <div class="banner-slide active">
-          <img src="./assets/main_banner.jpg" alt="Стикербук Народные русские сказки"
-            class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" />
+        <div class="banner-slide active"><img src="./assets/main_banner.jpg" alt="Стикербук Народные русские сказки" />
         </div>
+        <div class="banner-slide"><img src="./assets/banner2.png" alt="Акции и новинки" /></div>
+        <div class="banner-slide"><img src="./assets/bannerS.png" alt="Подборки недели" /></div>
+        <div class="banner-gradient"></div>
       </div>
 
 
@@ -1035,36 +1118,44 @@
       const bannerPrev = document.getElementById("banner-prev");
       const bannerNext = document.getElementById("banner-next");
       const dots = document.querySelectorAll(".slider-dots .dot");
+      const slides = document.querySelectorAll(".banner-slider .banner-slide");
+      const slider = document.querySelector(".banner-slider");
       let currentSlide = 0;
-      const totalSlides = 3;
+      const totalSlides = slides.length;
+      let timer;
 
-      function updateSlider() {
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("active", index === currentSlide);
-        });
+      function setActive(index) {
+        slides.forEach((s, i) => s.classList.toggle("active", i === index));
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        currentSlide = index;
       }
 
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-      }
-
-      function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-      }
+      function nextSlide() { setActive((currentSlide + 1) % totalSlides); }
+      function prevSlide() { setActive((currentSlide - 1 + totalSlides) % totalSlides); }
 
       bannerNext.addEventListener("click", nextSlide);
       bannerPrev.addEventListener("click", prevSlide);
+      dots.forEach((dot, index) => dot.addEventListener("click", () => setActive(index)));
 
-      dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-          currentSlide = index;
-          updateSlider();
-        });
+      function play() { timer = setInterval(nextSlide, 6000); }
+      function pause() { clearInterval(timer); }
+      play();
+      slider.addEventListener("mouseenter", pause);
+      slider.addEventListener("mouseleave", play);
+
+      let startX = 0;
+      slider.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
+      slider.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) { dx < 0 ? nextSlide() : prevSlide(); } }, { passive: true });
+
+      const hero = document.querySelector(".banner-hero");
+      hero.addEventListener("mousemove", e => {
+        if (window.innerWidth < 1024) return;
+        const r = hero.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        slider.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 4}deg)`;
       });
-
-      setInterval(nextSlide, 5000);
+      hero.addEventListener("mouseleave", () => { slider.style.transform = "rotateY(0deg) rotateX(0deg)"; });
     });
   </script>
 </body>
