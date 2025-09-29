@@ -206,10 +206,10 @@
 
     /* Единый стиль кнопки-корзины */
     .cart-btn {
-      background-color: #ffd6d6;
+      background-color: transparent;
       border-radius: 9999px;
-      width: 72px;
-      height: 34px;
+      width: auto;
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -241,23 +241,18 @@
     .artist-card .p-3 img[alt="Добавить в корзину"],
     .product-card .p-3 img[alt="Добавить в корзину"],
     .stickerpack-card .p-3 img[alt="Добавить в корзину"] {
-      width: 35px !important;
-      height: 35px !important;
+      width: 72px !important;
+      height: 36px !important;
+      flex-shrink: 0;
     }
 
-    /* Плюсовая кнопка add-to-cart */
+    /* Плюсовая кнопка add-to-cart — выравнивание без фикса размеров */
     .add-to-cart {
-      width: 35px !important;
-      height: 35px !important;
+      background: transparent;
       border-radius: 9999px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .add-to-cart svg {
-      width: 20px !important;
-      height: 20px !important;
     }
 
     /* Ровные футеры карточек: одинаковая высота, центрирование, прижатие вниз */
@@ -277,7 +272,7 @@
     .artist-card .p-3>div:last-child,
     .product-card .p-3>div:last-child,
     .stickerpack-card .p-3>div:last-child {
-      height: 35px;
+      min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -406,15 +401,19 @@
         display: none;
       }
     }
+
+    .benefit-card {
+      border-radius: 20px;
+    }
   </style>
 </head>
 
-<body class="bg-[#F3F5F9] text-gray-900">
+<body class="bg-[var(--app-bg)] text-gray-900">
 
   <div data-include="./components/header.html"></div>
 
 
-  <div class="header-spacer bg-white"></div>
+  <div class="header-spacer"></div>
 
 
   <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
@@ -513,8 +512,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -539,8 +538,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -565,8 +564,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -591,8 +590,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -617,8 +616,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -652,8 +651,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-base sm:text-lg">900 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -675,8 +674,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-base sm:text-lg">900 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -701,8 +700,8 @@
               <span class="font-bold text-base sm:text-lg">999 ₽</span>
               <span class="old-price">1 500 ₽</span>
             </div>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -725,7 +724,7 @@
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-base sm:text-lg">1 800 ₽</span>
             <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -765,7 +764,7 @@
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
             <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -790,8 +789,8 @@
           </p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -814,8 +813,8 @@
           <p class="text-xs text-gray-700 font-bold">Саке</p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -838,8 +837,8 @@
           <p class="text-xs text-gray-700 font-bold">Поски</p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -862,8 +861,8 @@
           <p class="text-xs text-gray-700 font-bold">Стикер "Хонда цивик"</p>
           <div class="flex justify-between items-center mt-1 sm:mt-2">
             <span class="font-bold text-sm sm:text-base">70 ₽</span>
-            <button>
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-7 sm:w-8 h-7 sm:h-8" />
+            <button class="cart-btn">
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -899,9 +898,9 @@
           <p class="text-xs text-gray-700">Отряд самоубийц в полном сборе</p>
           <div class="flex justify-between items-center mt-2">
             <span class="font-bold text-base sm:text-lg">300 ₽</span>
-            <button class="add-to-cart" data-id="1" data-name="Отряд самоубийц в полном сборе" data-price="300"
+            <button class="add-to-cart cart-btn" data-id="1" data-name="Отряд самоубийц в полном сборе" data-price="300"
               data-img="./assets/card_image (14).png" data-category="Стикерпак">
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-10 h-10" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -923,9 +922,9 @@
           <p class="text-xs text-gray-700">Стикерплейка "Супергерои"</p>
           <div class="flex justify-between items-center mt-2">
             <span class="font-bold text-base sm:text-lg">250 ₽</span>
-            <button class="add-to-cart" data-id="2" data-name="Стикерплейка Супергерои" data-price="250"
+            <button class="add-to-cart cart-btn" data-id="2" data-name="Стикерплейка Супергерои" data-price="250"
               data-img="./assets/image (2).png" data-category="Стикерпак">
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-10 h-10" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -947,9 +946,9 @@
           <p class="text-xs text-gray-700">Наклейки Homestuck</p>
           <div class="flex justify-between items-center mt-2">
             <span class="font-bold text-base sm:text-lg">300 ₽</span>
-            <button class="add-to-cart" data-id="3" data-name="Наклейки Homestuck" data-price="300"
+            <button class="add-to-cart cart-btn" data-id="3" data-name="Наклейки Homestuck" data-price="300"
               data-img="./assets/image (3).png" data-category="Стикерпак">
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-10 h-10" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -971,9 +970,9 @@
           <p class="text-xs text-gray-700">Наклейки Homestuck</p>
           <div class="flex justify-between items-center mt-2">
             <span class="font-bold text-base sm:text-lg">300 ₽</span>
-            <button class="add-to-cart" data-id="4" data-name="Наклейки Homestuck" data-price="300"
+            <button class="add-to-cart cart-btn" data-id="4" data-name="Наклейки Homestuck" data-price="300"
               data-img="./assets/card_image (15).png" data-category="Стикерпак">
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-10 h-10" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -995,9 +994,9 @@
           <p class="text-xs text-gray-700">Наклейки Хоумстак детки</p>
           <div class="flex justify-between items-center mt-2">
             <span class="font-bold text-base sm:text-lg">300 ₽</span>
-            <button class="add-to-cart" data-id="5" data-name="Stickers Homestuck Kids" data-price="300"
+            <button class="add-to-cart cart-btn" data-id="5" data-name="Stickers Homestuck Kids" data-price="300"
               data-img="./assets/card_image (16).png" data-category="Стикерпак">
-              <img src="./assets/button_add.svg" alt="Добавить в корзину" class="w-10 h-10" />
+              <img src="./assets/button_add.png" alt="Добавить в корзину" />
             </button>
           </div>
         </div>
@@ -1005,34 +1004,20 @@
     </div>
   </section>
 
-  <!-- Promo Banner (central) -->
-  <section class="w-full px-2 sm:px-4 mt-12">
-    <div class="relative max-w-7xl mx-auto promo-slider">
-      <img src="./assets/banner2.png" alt="Акции Parazita" class="w-full rounded-lg" id="promo-image" />
-      <!-- Nav arrows -->
-      <button class="banner-nav left-4 promo-prev" aria-label="Предыдущий баннер">
-        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button class="banner-nav right-4 promo-next" aria-label="Следующий баннер">
-        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  </section>
-
-  <!-- Преимущества -->
-  <section class="max-w-7xl mx-auto bg-white rounded-lg mt-6 mb-12 py-8 px-4 sm:px-8">
-    <h2 class="text-xl sm:text-2xl font-bold text-center mb-8">
-      Преимущества Parazita Kusok
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-10 max-w-3xl mx-auto text-gray-900 text-sm sm:text-base">
-      <p>Работаем с 2011 года</p>
-      <p>Специализируемся на стикерах и стикерпаках</p>
-      <p>Своё производство</p>
-      <p>Идеальное качество печати, резки</p>
+  <section class="w-full bg-[#EEF1F5] py-10 sm:py-12 mt-10">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4">
+      <h2 class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Почему выбирают нас</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div class="benefit-card bg-white shadow-sm p-4 sm:p-6 flex items-center justify-center">
+          <img src="./assets/Avtorski_product.png" alt="Авторский продукт" class="w-full h-auto" />
+        </div>
+        <div class="benefit-card bg-white shadow-sm p-4 sm:p-6 flex items-center justify-center">
+          <img src="./assets/Visokoe_kachestvo.png" alt="Высокое качество" class="w-full h-auto" />
+        </div>
+        <div class="benefit-card bg-white shadow-sm p-4 sm:p-6 flex items-center justify-center">
+          <img src="./assets/Delivery.png" alt="Доставка по всей России" class="w-full h-auto" />
+        </div>
+      </div>
     </div>
   </section>
 

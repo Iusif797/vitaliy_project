@@ -222,6 +222,26 @@
     }
   </style>
 
+  <style id="global-theme">
+    :root {
+      --app-bg: #F3F5F9;
+    }
+
+    body {
+      background-color: var(--app-bg) !important;
+    }
+
+    .header-spacer {
+      background-color: var(--app-bg) !important;
+    }
+
+    img[alt="Добавить в корзину"] {
+      width: 72px;
+      height: 36px;
+      display: block;
+    }
+  </style>
+
   <script>
     const mobileMenu = document.getElementById('mobile-menu');
     const backdrop = document.getElementById('menu-backdrop');

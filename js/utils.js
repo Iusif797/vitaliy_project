@@ -156,7 +156,7 @@ function setupMobileFeatures() {
 
   // Находим все кнопки, содержащие SVG корзины
   document.querySelectorAll('button').forEach(btn => {
-    const img = btn.querySelector('img[src$="button_add.svg"]');
+    const img = btn.querySelector('img[alt="Добавить в корзину"]');
     if (img) {
       btn.classList.add('cart-btn');
       btn.addEventListener('click', () => {
@@ -317,7 +317,7 @@ function setupCartFlyAnimation() {
     const trgRect = (cartEl.querySelector('svg') || cartEl).getBoundingClientRect();
 
     const flyer = document.createElement('img');
-    flyer.src = sourceEl.tagName === 'IMG' && sourceEl.src ? sourceEl.src : './assets/button_add.svg';
+    flyer.src = sourceEl.tagName === 'IMG' && sourceEl.src ? sourceEl.src : './assets/button_add.png';
     flyer.style.position = 'fixed';
     flyer.style.left = `${srcRect.left + srcRect.width / 2}px`;
     flyer.style.top = `${srcRect.top + srcRect.height / 2}px`;
@@ -352,7 +352,6 @@ function setupCartFlyAnimation() {
   document.addEventListener('click', (e) => {
     const addBtn = e.target.closest('.add-to-cart');
     const imgBtn = e.target.closest('button')?.querySelector('img[alt="Добавить в корзину"]');
-    const source = (e.target.closest('button')?.querySelector('img[alt="Добавить в корзину"]')) || addBtn;
     if (!addBtn && !imgBtn) return;
     animateToCart(imgBtn || addBtn);
   }, true);
