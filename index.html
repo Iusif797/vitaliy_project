@@ -364,7 +364,7 @@
     }
 
     .banner-slide.active img {
-      animation: kenburns 6000ms ease-out forwards;
+      animation: none;
     }
 
     .banner-nav {
@@ -384,6 +384,7 @@
       justify-content: center;
       backdrop-filter: blur(4px);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 5;
     }
 
     .banner-nav:hover {
@@ -399,6 +400,12 @@
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
     }
+
+    @media (max-width: 640px) {
+      .banner-nav {
+        display: none;
+      }
+    }
   </style>
 </head>
 
@@ -413,11 +420,18 @@
   <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
     <div class="relative overflow-hidden rounded-lg shadow-lg banner-hero">
       <div class="banner-slider relative">
-        <div class="banner-slide active"><img src="./assets/main_banner.jpg" alt="Стикербук Народные русские сказки" />
+        <div class="banner-slide active">
+          <picture>
+            <source media="(max-width: 640px)" srcset="./assets/slider1_mobile.jpg" />
+            <img src="./assets/slider1_desktop.jpg" alt="Баннер 1" />
+          </picture>
         </div>
-        <div class="banner-slide"><img src="./assets/banner2.png" alt="Акции и новинки" /></div>
-        <div class="banner-slide"><img src="./assets/bannerS.png" alt="Подборки недели" /></div>
-        <div class="banner-gradient"></div>
+        <div class="banner-slide">
+          <picture>
+            <source media="(max-width: 640px)" srcset="./assets/slider2_mobile.jpg" />
+            <img src="./assets/slider2_desktop.jpg" alt="Баннер 2" />
+          </picture>
+        </div>
       </div>
 
 
@@ -1147,15 +1161,7 @@
       slider.addEventListener("touchstart", e => { startX = e.touches[0].clientX; }, { passive: true });
       slider.addEventListener("touchend", e => { const dx = e.changedTouches[0].clientX - startX; if (Math.abs(dx) > 40) { dx < 0 ? nextSlide() : prevSlide(); } }, { passive: true });
 
-      const hero = document.querySelector(".banner-hero");
-      hero.addEventListener("mousemove", e => {
-        if (window.innerWidth < 1024) return;
-        const r = hero.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        slider.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 4}deg)`;
-      });
-      hero.addEventListener("mouseleave", () => { slider.style.transform = "rotateY(0deg) rotateX(0deg)"; });
+      // упрощённый режим без 3D-эффектов
     });
   </script>
 </body>
