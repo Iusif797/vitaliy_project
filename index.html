@@ -400,6 +400,19 @@
       .banner-nav {
         display: none;
       }
+
+      /* Баннер на мобилке без боковых полей */
+      .banner-wrap {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: -0.75rem;
+        /* компенсируем px-3 */
+        margin-right: -0.75rem;
+      }
+
+      .banner-hero {
+        border-radius: 0;
+      }
     }
 
     .benefit-card {
@@ -416,7 +429,7 @@
   <div class="header-spacer"></div>
 
 
-  <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6">
+  <section class="relative max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-6 banner-wrap">
     <div class="relative overflow-hidden rounded-lg shadow-lg banner-hero">
       <div class="banner-slider relative">
         <div class="banner-slide active">
