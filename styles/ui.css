@@ -1,0 +1,89 @@
+header .logo-header {
+  filter: brightness(0) invert(1) !important;
+}
+
+.footer-logo {
+  filter: brightness(0) invert(1) !important;
+}
+
+.footer-social-icon {
+  transition: transform 0.3s ease;
+}
+
+.footer-social-icon:hover {
+  transform: scale(1.1);
+}
+
+.footer-social-icon img {
+  filter: brightness(1.2) !important;
+}
+
+@media (max-width: 768px) {
+  footer .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  footer .md\:col-span-1:first-child {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  footer .md\:flex-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  footer .md\:space-x-6 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  footer h3 {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  footer ul li {
+    font-size: 0.75rem;
+  }
+
+  footer .text-2xl {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  footer .md\:col-span-1 {
+    text-align: center;
+  }
+}
+
+img[alt="Добавить в корзину"] {
+  width: 72px !important;
+  height: 36px !important;
+  display: block !important;
+  transition: transform 0.2s ease !important;
+}
+
+img[alt="Добавить в корзину"]:hover {
+  transform: scale(1.05) !important;
+}
+
+#mobile-menu img[alt="Parazita Kusok"] {
+  filter: brightness(0) invert(1) !important;
+}
+
+#menu-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
