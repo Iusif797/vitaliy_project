@@ -287,10 +287,33 @@ function setupCartAddHandlers() {
     const data = extractFromCard(srcBtn);
     if (!data || !data.price) return;
 
+    const card = srcBtn.closest('.product-card, .artist-card, .stickerpack-card');
+    if (!card) return;
+    if (card.querySelector('.qty-picker')) return;
+
     e.stopPropagation();
     e.preventDefault();
 
-    showQuantityModal(data, (qty) => {
+    const footer = card.querySelector('.p-3 > div:last-child, .p-4 > div:last-child');
+    if (!footer) return;
+    footer.style.display = 'none';
+
+    const picker = document.createElement('div');
+    picker.className = 'qty-picker p-3 flex flex-col gap-2';
+    picker.innerHTML = `
+      <div class="flex items-center justify-between bg-white border border-gray-300 rounded-xl py-3 px-4 shadow-sm">
+        <button class="qty-dec w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 font-bold text-xl">−</button>
+        <span class="qty-val text-base font-medium text-gray-900">1 шт.</span>
+        <button class="qty-inc w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 font-bold text-xl">+</button>
+      </div>
+      <button class="qty-confirm w-full bg-[#FF4A4A] hover:bg-red-600 text-white py-2 rounded-lg text-sm font-semibold">Добавить</button>
+    `;
+    card.querySelector('.p-3, .p-4').appendChild(picker);
+
+    let qty = 1;
+    const qtyVal = picker.querySelector('.qty-val');
+
+    const addToCart = () => {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       const existing = cart.find(item => item.name === data.name);
       if (existing) {
@@ -301,8 +324,22 @@ function setupCartAddHandlers() {
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCountSoft();
       notify(`${data.name} добавлен в корзину`);
+      picker.remove();
+      footer.style.display = '';
       updateCartButtonStates();
-    });
+    };
+
+    picker.querySelector('.qty-dec').addEventListener('click', (ev) => { ev.stopPropagation(); if (qty > 1) { qty--; qtyVal.textContent = `${qty} шт.`; } else { picker.remove(); footer.style.display = ''; } });
+    picker.querySelector('.qty-inc').addEventListener('click', (ev) => { ev.stopPropagation(); qty++; qtyVal.textContent = `${qty} шт.`; });
+    picker.querySelector('.qty-confirm').addEventListener('click', (ev) => { ev.stopPropagation(); addToCart(); });
+
+    document.addEventListener('click', function closePicker(ev) {
+      if (!picker.contains(ev.target)) {
+        picker.remove();
+        footer.style.display = '';
+        document.removeEventListener('click', closePicker);
+      }
+    }, { capture: true });
   }, true);
 }
 /**
