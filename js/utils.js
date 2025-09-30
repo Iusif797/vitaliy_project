@@ -287,12 +287,22 @@ function setupCartAddHandlers() {
     const data = extractFromCard(srcBtn);
     if (!data || !data.price) return;
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(data);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCountSoft();
-    notify(`${data.name} добавлен в корзину`);
-    updateCartButtonStates();
+    e.stopPropagation();
+    e.preventDefault();
+
+    showQuantityModal(data, (qty) => {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.name === data.name);
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({ ...data, quantity: qty });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCountSoft();
+      notify(`${data.name} добавлен в корзину`);
+      updateCartButtonStates();
+    });
   }, true);
 }
 /**
@@ -374,11 +384,49 @@ function updateCartButtonStates() {
     if (!cardImg) return;
     const cardImgName = cardImg.src.split('/').pop();
     if (cartImgSources.includes(cardImgName)) {
-      btn.src = './assets/button_add_done.png';
+      btn.src = './assets/button_add_afteradded.png';
       btn.closest('button')?.classList.add('in-cart');
     } else {
       btn.src = './assets/button_add.png';
       btn.closest('button')?.classList.remove('in-cart');
     }
   });
+}
+
+function showQuantityModal(data, onConfirm) {
+  const modal = document.createElement('div');
+  modal.id = 'qty-modal';
+  modal.className = 'fixed inset-0 bg-black/60 z-[200] flex items-center justify-center px-4';
+  modal.innerHTML = `
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-200">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-lg font-bold text-gray-900">Добавить в корзину</h3>
+        <button class="close-modal p-1 rounded-lg hover:bg-gray-100"><svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+      </div>
+      <div class="flex gap-3 mb-4">
+        <img src="${data.img}" class="w-20 h-20 object-cover rounded-lg" />
+        <div class="flex-1">
+          <p class="font-medium text-sm text-gray-900 line-clamp-2">${data.name}</p>
+          <p class="text-base font-bold text-gray-900 mt-1">${data.price} ₽</p>
+        </div>
+      </div>
+      <div class="flex items-center justify-between border rounded-lg p-3 mb-4">
+        <button class="qty-dec w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 font-semibold">−</button>
+        <span class="qty-display text-lg font-semibold">1 шт.</span>
+        <button class="qty-inc w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-700 font-semibold">+</button>
+      </div>
+      <button class="confirm-add w-full bg-[#FF4A4A] hover:bg-red-600 text-white py-3 rounded-full font-semibold">Добавить</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  requestAnimationFrame(() => modal.querySelector('div').classList.remove('scale-95', 'opacity-0'));
+
+  let qty = 1;
+  const qtyDisplay = modal.querySelector('.qty-display');
+  modal.querySelector('.qty-dec').addEventListener('click', () => { if (qty > 1) { qty--; qtyDisplay.textContent = `${qty} шт.`; } });
+  modal.querySelector('.qty-inc').addEventListener('click', () => { qty++; qtyDisplay.textContent = `${qty} шт.`; });
+  const close = () => { modal.querySelector('div').classList.add('scale-95', 'opacity-0'); setTimeout(() => modal.remove(), 200); };
+  modal.querySelector('.close-modal').addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  modal.querySelector('.confirm-add').addEventListener('click', () => { onConfirm(qty); close(); });
 }
