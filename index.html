@@ -1079,6 +1079,8 @@
 
           // Show notification
           showNotification(`${name} добавлен в корзину`);
+
+          if (window.updateCartButtonStates) updateCartButtonStates();
         });
       });
 

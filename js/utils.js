@@ -53,6 +53,7 @@ async function includeHTML() {
   setupCartFlyAnimation();
   setupCartAddHandlers();
   setupProductNavigation();
+  updateCartButtonStates();
 }
 
 // Запускаем после полной загрузки страницы
@@ -200,10 +201,7 @@ function setupProductNavigation() {
   if (window.__productNavBound) return;
   window.__productNavBound = true;
 
-  const computeProductPath = () => {
-    const p = window.location.pathname.replace(/\\/g, '/');
-    return p.includes('/parazita-template-clean/') ? '../pages/product.html' : './pages/product.html';
-  };
+  const computeProductPath = () => './pages/product.html';
 
   const extractText = (el) => (el ? (el.textContent || '').trim() : 'Товар');
 
@@ -294,6 +292,7 @@ function setupCartAddHandlers() {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCountSoft();
     notify(`${data.name} добавлен в корзину`);
+    updateCartButtonStates();
   }, true);
 }
 /**
@@ -355,4 +354,31 @@ function setupCartFlyAnimation() {
     if (!addBtn && !imgBtn) return;
     animateToCart(imgBtn || addBtn);
   }, true);
+}
+
+function updateCartButtonStates() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartImgSources = cart.map(item => {
+    try {
+      const url = new URL(item.img, window.location.href);
+      return url.pathname.split('/').pop();
+    } catch (_) {
+      return item.img.split('/').pop();
+    }
+  });
+
+  document.querySelectorAll('img[alt="Добавить в корзину"]').forEach(btn => {
+    const card = btn.closest('.product-card, .artist-card, .stickerpack-card');
+    if (!card) return;
+    const cardImg = card.querySelector('img');
+    if (!cardImg) return;
+    const cardImgName = cardImg.src.split('/').pop();
+    if (cartImgSources.includes(cardImgName)) {
+      btn.src = './assets/button_add_done.png';
+      btn.closest('button')?.classList.add('in-cart');
+    } else {
+      btn.src = './assets/button_add.png';
+      btn.closest('button')?.classList.remove('in-cart');
+    }
+  });
 }

@@ -66,7 +66,7 @@ The website delivers a flawless, device-agnostic experience:
 ## Deployment
 
 Live on Vercel:  
-[https://parazita-template-clean-2qm8kha7p-yosefs-projects-05866a03.vercel.app/](https://parazita-template-clean-2qm8kha7p-yosefs-projects-05866a03.vercel.app/)
+ 
 
 ## Project Structure
 
